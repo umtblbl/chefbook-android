@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="VectorDrawableCompat"
+        tools:context=".UI.LoginActivity.LoginActivity">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/bgHeader"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:contentDescription="header"
+            android:background="@drawable/header"/>
+
+    <TextView
+            android:id="@+id/txtLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="45dp"
+            android:transitionName="login"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    <ImageView
+            android:id="@+id/circle1"
+            android:layout_width="134dp"
+            android:layout_height="134dp"
+            android:transitionName="image"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-100dp"
+            android:layout_marginBottom="50dp"
+            android:src="@drawable/circlet" />
+
+    <ImageView
+            android:id="@+id/circle2"
+            android:layout_width="182dp"
+            android:layout_height="182dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="-90dp"
+            android:layout_marginBottom="-40dp"
+            android:src="@drawable/circle" />
+
+    <ImageView
+            android:id="@+id/circle3"
+            android:layout_width="134dp"
+            android:layout_height="134dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="-50dp"
+            android:layout_marginBottom="-60dp"
+            android:layout_toStartOf="@id/circle2"
+            android:src="@drawable/circlet" />
+
+    <ImageView
+            android:id="@+id/circle4"
+            android:layout_width="134dp"
+            android:layout_height="134dp"
+            android:layout_below="@+id/bgHeader"
+            android:layout_marginTop="-130dp"
+            android:layout_marginEnd="-100dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/circlet" />
+
+    <ScrollView
+            android:id="@+id/sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp">
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="60dp"
+                        android:paddingTop="40dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/rect1"
+                            android:paddingStart="10dp"
+                            android:paddingTop="2dp"
+                            android:id="@+id/layout_UserName"
+                            android:paddingEnd="15dp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="16"
+                            app:counterTextAppearance="@style/CounterStyle">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/regUserName"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="@color/colorPrimaryDark"
+                                android:hint="Kullanıcı Adı / Email"
+                                android:singleLine="true"
+                                android:textColor="@android:color/black"
+                                android:textSize="16sp"
+                                tools:ignore="SmallSp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/rect1"
+                            android:paddingStart="10dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="15dp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark"
+                            app:counterEnabled="true"
+                            android:id="@+id/layout_Password"
+                            app:counterMaxLength="16"
+                            app:counterTextAppearance="@style/CounterStyle"
+                            app:passwordToggleEnabled="true"
+                            app:passwordToggleTint="@color/colorPrimaryDark">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/loginPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="@color/colorPrimaryDark"
+                                android:hint="@string/password"
+                                android:inputType="textPassword"
+                                android:singleLine="true"
+                                android:textColor="@android:color/black"
+                                android:textSize="16sp"
+                                tools:ignore="SmallSp" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                    android:id="@+id/rl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:transitionName="circleTes"
+                    android:layout_alignTop="@+id/cv"
+                    android:layout_alignEnd="@+id/cv"
+                    android:layout_marginTop="-20dp"
+                    android:layout_marginEnd="-20dp"
+                    android:elevation="10dp">
+
+                <ImageButton
+                        android:id="@+id/btnRegister"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/circle"
+                        android:src="@drawable/ic_add" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/cv"
+                    android:layout_alignRight="@+id/cv"
+                    android:layout_alignBottom="@+id/cv"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginBottom="-20dp"
+                    android:elevation="10dp">
+
+                <Button
+                        android:id="@+id/search_close_btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bt_uisquare"
+                        android:text="@string/login"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite" />
+            </RelativeLayout>
+
+            <TextView
+                    android:id="@+id/txtForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cv"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="15dp"
+                    android:text="@string/login_forgotmepassword"
+                    android:textSize="14sp" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

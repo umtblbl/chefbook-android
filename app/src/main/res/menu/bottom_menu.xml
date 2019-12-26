@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/usersearch"
+            android:icon="@drawable/search_24dp"
+            android:title="Search User Photo"/>
+
+    <item
+            android:id="@+id/userProfile"
+            android:icon="@drawable/user3_24dp"
+            android:title="Profile"/>
+
+
+</menu>

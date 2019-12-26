@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:id="@+id/imgCircleProfilePicture"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginStart="15dp">
+
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:padding="5dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginStart="6dp"
+                        app:cardElevation="6dp"
+                        app:cardBackgroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="7dp"
+                            android:layout_marginEnd="7dp">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtMediaCount"
+                                android:textStyle="bold"
+                                android:layout_gravity="center"
+                                android:textSize="15sp"
+                                android:textColor="@android:color/white"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Gönderi"
+                                android:layout_gravity="center"
+                                android:textSize="15sp"
+                                android:textColor="@android:color/white"/>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginStart="1dp"
+                        app:cardElevation="6dp"
+                        app:cardBackgroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="7dp"
+                            android:layout_marginEnd="7dp">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:layout_gravity="center"
+                                android:textSize="15sp"
+                                android:id="@+id/txtFollowersCount"
+                                android:textColor="@android:color/white"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Takipçi"
+                                android:layout_gravity="center"
+                                android:textSize="15sp"
+                                android:textColor="@android:color/white"/>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginStart="1dp"
+                        app:cardElevation="6dp"
+                        app:cardBackgroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="7dp"
+                            android:layout_marginEnd="7dp"
+                            android:padding="10dp">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtFollowingCount"
+                                android:textStyle="bold"
+                                android:layout_gravity="center"
+                                android:textSize="15sp"
+                                android:textColor="@android:color/white"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Takip"
+                                android:layout_gravity="center"
+                                android:textSize="15sp"
+                                android:textColor="@android:color/white"/>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp">
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtUserName"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="start"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtFullName"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="2dp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtUserBio"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="3dp"/>
+
+
+        </LinearLayout>
+
+        <com.zolad.zoominimageview.ZoomInImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imgProfilePicture"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="7dp"/>
+
+    </LinearLayout>
+</LinearLayout>

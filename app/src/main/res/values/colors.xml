@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#512da8</color>
+    <color name="colorPrimaryDark">#4527a0</color>
+    <color name="colorAccent">#3949ab</color>
+    <color name="startColor">#ad1457</color>
+    <color name="colorControlNormal">#c5c5c5</color>
+    <color name="colorControlActivated">@color/colorAccent</color>
+    <color name="colorControlHighlight">@color/colorAccent</color>
+
+    <color name="colorBlue">#28A2CF</color>
+    <color name="colorBlueT">#6428a2cf</color>
+    <color name="colorPurple">#A130FF</color>
+    <color name="colorPurpleT">#64a130ff</color>
+    <color name="colorWhite">#ffffff</color>
+</resources>

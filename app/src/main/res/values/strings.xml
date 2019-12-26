@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Chefbook</string>
+    <string name="usersearch_title">Kullanıcı Ara</string>
+    <string name="already_have_an_account">Zaten bir hesabın var mı? Oturum aç</string>
+    <string name="create_account">Hesap Oluştur</string>
+    <string name="create">Oluştur</string>
+    <string name="name_surname">Ad Soyad</string>
+    <string name="email">Email</string>
+    <string name="password">Şifre</string>
+    <string name="password_again">Şifre Tekrar</string>
+    <string name="userName">Kullanıcı Adı</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="login_forgotmepassword">Şifreni mi unuttun?</string>
+    <string name="login">Giriş Yap</string>
+    <string name="register_login">Hesabın var mı? Giriş Yap!</string>
+</resources>

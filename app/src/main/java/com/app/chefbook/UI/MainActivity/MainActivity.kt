@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import javax.inject.Inject
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, BottomNavigationView.OnNavigationItemReselectedListener,
     BottomNavigationView.OnNavigationItemSelectedListener {
 

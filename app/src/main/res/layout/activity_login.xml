@@ -101,7 +101,7 @@
                             android:background="@drawable/rect1"
                             android:paddingStart="10dp"
                             android:paddingTop="2dp"
-                            android:id="@+id/layout_UserName"
+                            android:id="@+id/layout_Email"
                             android:paddingEnd="15dp"
                             android:textColor="@color/colorPrimaryDark"
                             android:textColorHint="@color/colorPrimaryDark"
@@ -110,7 +110,7 @@
                             app:counterTextAppearance="@style/CounterStyle">
 
                         <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/regUserName"
+                                android:id="@+id/logEmail"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:backgroundTint="@color/colorPrimaryDark"
@@ -140,7 +140,7 @@
                             app:passwordToggleTint="@color/colorPrimaryDark">
 
                         <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/loginPassword"
+                                android:id="@+id/logPassword"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:backgroundTint="@color/colorPrimaryDark"
@@ -192,7 +192,7 @@
                     android:elevation="10dp">
 
                 <Button
-                        android:id="@+id/search_close_btnLogin"
+                        android:id="@+id/btnLogin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"

@@ -1,5 +1,6 @@
 package com.app.chefbook.Data.Remote
 
+import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
 import kotlinx.coroutines.Deferred
 import retrofit2.Call
@@ -11,4 +12,6 @@ interface ApiInterface {
     @POST("User/register")
     fun registerUser(@Body registerUser: RegisterUser): Call<String>
 
+    @POST("User/login")
+    fun loginUser(@Body loginUser: LoginUser): Call<String>
 }

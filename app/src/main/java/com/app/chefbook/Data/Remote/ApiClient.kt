@@ -5,8 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
 
-    //val BASE_URL = "https://www.instagram.com/"
-    val BASE_URL = "https://chefbookapi20191214013844.azurewebsites.net/api/"
+    //https://chefbookapi.azurewebsites.net/
+    val BASE_URL = "https://chefbookapi.azurewebsites.net/api/"
     private var retrofit: Retrofit? = null
 
     val client:Retrofit?

@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.app.chefbook.DI.DataManager.componentActivity
 import com.app.chefbook.Data.IDataManager
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
@@ -30,18 +32,6 @@ class RegisterActivity : AppCompatActivity() {
         val animation = AnimationUtils.loadAnimation(this, R.anim.uptodown)
         rlayout.animation = animation
 
-        viewModel.isAuth?.observe(this, Observer {
-
-            when (it) {
-                true -> {
-                    //Intent to MainActivity
-                }
-                false -> {
-                    //Error Dialog
-                }
-            }
-
-        })
 
         txtLogin.setOnClickListener {startActivity(Intent(this, LoginActivity::class.java)) }
 
@@ -78,9 +68,26 @@ class RegisterActivity : AppCompatActivity() {
                     password = regPassword.text.toString()
                 )
                 viewModel.registerUser(registerUser)
-
             }
         }
+
+        viewModel.isAuth.observe(this, Observer {
+            when (it) {
+                true -> {
+                    SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Kayıt Başarılı!")
+                        .show()
+                }
+                false -> {
+                    SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Kayıt Başarısız!")
+                        .setContentText(viewModel.errorResponse.toString())
+                        .show()
+                }
+            }
+
+        })
+
 
 
     }

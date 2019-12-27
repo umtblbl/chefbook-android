@@ -1,195 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        tools:context=".UI.RegisterActivity.RegisterActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".UI.RegisterActivity.RegisterActivity">
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="@drawable/header_register"
-            android:elevation="10dp"
-            android:theme="@style/ToolbarTheme" />
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/header_register"
+        android:elevation="10dp"
+        android:theme="@style/ToolbarTheme" />
 
     <TextView
-            android:id="@+id/tvSignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:elevation="10dp"
-            android:text="@string/register"
-            android:textColor="@color/colorWhite"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:transitionName="login" />
+        android:id="@+id/tvSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:elevation="10dp"
+        android:text="@string/register"
+        android:textColor="@color/colorWhite"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:transitionName="login" />
 
     <ImageView
-            android:id="@+id/circle2"
-            android:layout_width="182dp"
-            android:layout_height="182dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="-87dp"
-            android:layout_marginBottom="-40dp"
-            android:src="@drawable/circle" />
+        android:id="@+id/circle2"
+        android:layout_width="182dp"
+        android:layout_height="182dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-87dp"
+        android:layout_marginBottom="-40dp"
+        android:src="@drawable/circle" />
 
     <ImageView
-            android:id="@+id/circleTes"
-            android:layout_width="134dp"
-            android:layout_height="134dp"
-            android:layout_below="@+id/toolbar"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="-50dp"
-            android:src="@drawable/circlet" />
+        android:id="@+id/circleTes"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-50dp"
+        android:src="@drawable/circlet" />
 
     <ScrollView
-            android:id="@+id/sv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <RelativeLayout
-                android:id="@+id/rlayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp">
+            android:id="@+id/rlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp">
 
             <androidx.cardview.widget.CardView
-                    android:id="@+id/cv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="4dp">
+                android:id="@+id/cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_UserName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginBottom="60dp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/rect1"
-                            android:paddingStart="10dp"
-                            android:paddingTop="2dp"
-                            android:id="@+id/layout_UserName"
-                            android:paddingEnd="15dp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textColorHint="@color/colorPrimaryDark"
-                            app:counterEnabled="true"
-                            app:counterMaxLength="16"
-                            app:counterTextAppearance="@style/CounterStyle">
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rect1"
+                        android:paddingStart="10dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="16"
+                        app:counterTextAppearance="@style/CounterStyle">
 
                         <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/regUserName"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:backgroundTint="@color/colorPrimaryDark"
-                                android:hint="@string/userName"
-                                android:singleLine="true"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp"
-                                tools:ignore="SmallSp" />
+                            android:id="@+id/regUserName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:hint="@string/userName"
+                            android:singleLine="true"
+                            android:text="mehmetceylan35"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            tools:ignore="SmallSp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/layout_Mail"
-                            android:background="@drawable/rect1"
-                            android:paddingStart="10dp"
-                            android:paddingTop="2dp"
-                            android:paddingEnd="15dp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textColorHint="@color/colorPrimaryDark"
-                            app:counterEnabled="true"
-                            app:counterMaxLength="50"
-                            app:counterTextAppearance="@style/CounterStyle">
+                        android:id="@+id/layout_Mail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rect1"
+                        android:paddingStart="10dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="50"
+                        app:counterTextAppearance="@style/CounterStyle">
 
                         <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/regMail"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:backgroundTint="@color/colorPrimaryDark"
-                                android:hint="@string/email"
-                                android:singleLine="true"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp"
-                                tools:ignore="SmallSp" />
+                            android:id="@+id/regMail"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:hint="@string/email"
+                            android:singleLine="true"
+                            android:text="mehmetceylan35@gmail.com"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            tools:ignore="SmallSp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/rect1"
-                            android:paddingStart="10dp"
-                            android:paddingTop="2dp"
-                            android:paddingEnd="15dp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textColorHint="@color/colorPrimaryDark"
-                            app:counterEnabled="true"
-                            android:id="@+id/layout_Password"
-                            app:counterMaxLength="16"
-                            app:counterTextAppearance="@style/CounterStyle"
-                            app:passwordToggleEnabled="true"
-                            app:passwordToggleTint="@color/colorPrimaryDark">
+                        android:id="@+id/layout_Password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rect1"
+                        android:paddingStart="10dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="16"
+                        app:counterTextAppearance="@style/CounterStyle"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/colorPrimaryDark">
 
                         <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/regPassword"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:backgroundTint="@color/colorPrimaryDark"
-                                android:hint="@string/password"
-                                android:inputType="textPassword"
-                                android:singleLine="true"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp"
-                                tools:ignore="SmallSp" />
+                            android:id="@+id/regPassword"
+                            android:layout_width="match_parent"
+                            android:text="12345678"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            tools:ignore="SmallSp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/rect1"
-                            android:paddingStart="10dp"
-                            android:paddingTop="2dp"
-                            android:paddingEnd="15dp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:id="@+id/layout_PasswordAgain"
-                            android:textColorHint="@color/colorPrimaryDark"
-                            app:counterEnabled="true"
-                            app:counterMaxLength="16"
-                            app:counterTextAppearance="@style/CounterStyle"
-                            app:passwordToggleEnabled="true"
-                            app:passwordToggleTint="@color/colorPrimaryDark">
+                        android:id="@+id/layout_PasswordAgain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rect1"
+                        android:paddingStart="10dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="16"
+                        app:counterTextAppearance="@style/CounterStyle"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/colorPrimaryDark">
 
                         <com.google.android.material.textfield.TextInputEditText
-
-                                android:id="@+id/regPasswordAgain"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:backgroundTint="@color/colorPrimaryDark"
-                                android:hint="@string/password_again"
-                                android:inputType="textPassword"
-                                android:singleLine="true"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp"
-                                tools:ignore="SmallSp" />
+                            android:id="@+id/regPasswordAgain"
+                            android:layout_width="match_parent"
+                            android:text="12345678"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/colorPrimaryDark"
+                            android:hint="@string/password_again"
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            tools:ignore="SmallSp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -198,38 +201,38 @@
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/cv"
-                    android:layout_alignEnd="@+id/cv"
-                    android:layout_alignBottom="@+id/cv"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginBottom="-20dp"
-                    android:elevation="40dp">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/cv"
+                android:layout_alignEnd="@+id/cv"
+                android:layout_alignBottom="@+id/cv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="-20dp"
+                android:elevation="40dp">
 
                 <Button
-                        android:id="@+id/btnRegister"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bt_uisquare"
-                        android:text="@string/register"
-                        android:textAllCaps="false"
-                        android:textColor="@color/colorWhite" />
+                    android:id="@+id/btnRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bt_uisquare"
+                    android:text="@string/register"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite" />
             </RelativeLayout>
 
             <TextView
-                    android:id="@+id/txtLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/cv"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="15dp"
-                    android:paddingTop="15dp"
-                    android:text="@string/register_login"
-                    android:textSize="14sp" />
+                android:id="@+id/txtLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cv"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"
+                android:paddingTop="15dp"
+                android:text="@string/register_login"
+                android:textSize="14sp" />
 
         </RelativeLayout>
     </ScrollView>

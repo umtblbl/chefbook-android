@@ -98,7 +98,10 @@ dependencies {
     //CardView
     implementation 'androidx.cardview:cardview:1.0.0'
 
+    //Kotlin Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
+    //Sweet Alert Dialog
+    implementation 'com.github.f0ris.sweetalert:library:1.5.1'
 }

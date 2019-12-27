@@ -2,14 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/usersearch"
-            android:icon="@drawable/search_24dp"
-            android:title="Search User Photo"/>
+        android:id="@+id/flow"
+        android:icon="@drawable/search_24dp"
+        android:title="Post of flow" />
 
     <item
-            android:id="@+id/userProfile"
-            android:icon="@drawable/user3_24dp"
-            android:title="Profile"/>
+        android:id="@+id/discovery"
+        android:icon="@drawable/user3_24dp"
+        android:title="Discovery of user" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/user3_24dp"
+        android:title="My Profile" />
 
 
 </menu>

@@ -1,6 +1,7 @@
 package com.app.chefbook.UI.RegisterActivity
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
@@ -13,6 +14,7 @@ import com.app.chefbook.Data.IDataManager
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
 import com.app.chefbook.R
 import com.app.chefbook.UI.LoginActivity.LoginActivity
+import com.app.chefbook.UI.MainActivity.MainActivity
 import com.app.chefbook.Utilities.isValidEmail
 import kotlinx.android.synthetic.main.activity_register.*
 import javax.inject.Inject
@@ -32,6 +34,7 @@ class RegisterActivity : AppCompatActivity() {
         val animation = AnimationUtils.loadAnimation(this, R.anim.uptodown)
         rlayout.animation = animation
 
+        val loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
 
         txtLogin.setOnClickListener {startActivity(Intent(this, LoginActivity::class.java)) }
 
@@ -62,22 +65,38 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             if(registerState) {
+
+                loadingDialog.show()
+
                 val registerUser = RegisterUser(
                     userName = regUserName.text.toString(),
                     mail = regMail.text.toString(),
                     password = regPassword.text.toString()
                 )
                 viewModel.registerUser(registerUser)
+
+
             }
         }
 
         viewModel.isAuth.observe(this, Observer {
+
+            loadingDialog.cancel()
+
             when (it) {
                 true -> {
+
+                    val intent = Intent(this, MainActivity::class.java)
                     SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
                         .setTitleText("Kayıt Başarılı!")
+                        .setConfirmButton("Ok", object : SweetAlertDialog.OnSweetClickListener {
+                            override fun onClick(sweetAlertDialog: SweetAlertDialog?) {
+                                startActivity(intent)
+                            }
+                        })
                         .show()
                 }
+
                 false -> {
                     SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Kayıt Başarısız!")

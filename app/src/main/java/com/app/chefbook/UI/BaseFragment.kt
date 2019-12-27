@@ -13,14 +13,13 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import com.app.chefbook.Utilities.rootDestinations
 
-class BaseFragment: Fragment() {
+class BaseFragment : Fragment() {
 
     private val defaultInt = -1
     private var layoutRes: Int = -1
     private var toolbarId: Int = -1
     private var navHostId: Int = -1
     private val appBarConfig = AppBarConfiguration(rootDestinations)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +31,7 @@ class BaseFragment: Fragment() {
         } ?: return
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return if (layoutRes == defaultInt) null
         else inflater.inflate(layoutRes, container, false)
@@ -40,6 +39,7 @@ class BaseFragment: Fragment() {
 
     override fun onStart() {
         super.onStart()
+
         // return early if no arguments were parsed
         if (toolbarId == defaultInt || navHostId == defaultInt) return
 
@@ -56,14 +56,12 @@ class BaseFragment: Fragment() {
             .navigateUp(appBarConfig)
     }
 
-
     fun popToRoot() {
         val navController = requireActivity().findNavController(navHostId)
         navController.popBackStack(navController.graph.startDestination, false)
     }
 
     fun handleDeepLink(intent: Intent) = requireActivity().findNavController(navHostId).handleDeepLink(intent)
-
 
     companion object {
 

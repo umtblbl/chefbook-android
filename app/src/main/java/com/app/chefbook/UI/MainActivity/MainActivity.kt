@@ -28,10 +28,11 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, Bottom
     private val backStack = Stack<Int>()
 
     private val fragments = listOf(
-        BaseFragment.newInstance(R.layout.content_usersearch_base, R.id.toolbar_usersearch, R.id.nav_host_usersearch),
-                                                        BaseFragment.newInstance(R.layout.content_userprofile_base, R.id.toolbar_userprofile, R.id.nav_host_userprofile))
+        BaseFragment.newInstance(R.layout.content_flow_base, R.id.toolbar_flow, R.id.nav_container_flow),
+        BaseFragment.newInstance(R.layout.content_discovery_base, R.id.toolbar_discovery, R.id.nav_container_discovery),
+        BaseFragment.newInstance(R.layout.content_profile_base, R.id.toolbar_profile, R.id.nav_container_profile))
 
-    private val indexToPage = mapOf(0 to R.id.usersearch, 1 to R.id.userProfile)
+    private val indexToPage = mapOf(0 to R.id.flow, 1 to R.id.discovery, 2 to R.id.profile)
 
     @Inject
     lateinit var dataManager: IDataManager
@@ -65,16 +66,13 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, Bottom
 
         // initialize backStack with elements
         if (backStack.empty()) backStack.push(0)
-
     }
-
 
     private fun setupBottomNavMenu(navController: NavController) {
         bottom_navigation?.let {
             NavigationUI.setupWithNavController(it, navController)
         }
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val navController = Navigation.findNavController(this, R.id.bottom_navigation)
@@ -145,7 +143,6 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, Bottom
 
         when (menuItem.itemId) {
             R.id.bottom_navigation_search -> {
-                switchFragment(UserSearchFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bottom_navigation_profile -> {

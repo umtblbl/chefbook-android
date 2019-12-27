@@ -5,7 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.app.chefbook.DI.DataManager.componentActivity
 import com.app.chefbook.Data.IDataManager
 import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
@@ -29,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         componentActivity.inject(this)
         viewModel = ViewModelProviders.of(this, LoginViewModelFactory(dataManager)).get(LoginViewModel::class.java)
 
+        val loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
 
         btnLogin.setOnClickListener {
 
@@ -37,8 +40,8 @@ class LoginActivity : AppCompatActivity() {
 
             var registerState = true
 
-            if(logEmail.length() > 50 || !isValidEmail(logEmail.text)) {
-                layout_Email.error = "En fazla 30 karakterden oluşan geçerli bir mail adresi girin"
+            if(logEmail.length() > 50) {
+                layout_Email.error = "En fazla 50 karakter olmalı"
                 registerState = false
             }
             if(logPassword.length() < 8 || logPassword.length() > 16) {
@@ -47,6 +50,9 @@ class LoginActivity : AppCompatActivity() {
             }
 
             if(registerState) {
+
+                loadingDialog.show()
+
                 val loginUser = LoginUser(
                     email = logEmail.text.toString(),
                     password = logPassword.text.toString()
@@ -60,6 +66,26 @@ class LoginActivity : AppCompatActivity() {
             val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this,  android.util.Pair<View, String> (txtLogin, "Login"))
             startActivity(intent, activityOptions.toBundle())
         }
+
+        viewModel.isAuth.observe(this, Observer {
+
+            loadingDialog.cancel()
+
+            when (it) {
+                true -> {
+                    SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Kayıt Başarılı!")
+                        .show()
+                }
+                false -> {
+                    SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Kayıt Başarısız!")
+                        .setContentText(viewModel.errorResponse.toString())
+                        .show()
+                }
+            }
+
+        })
 
     }
 }

@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import com.app.chefbook.R
 
-val rootDestinations = setOf(R.id.destination_usersearch, R.id.destination_userprofile)
+val rootDestinations = setOf(R.id.flowFragment, R.id.discoveryFragment, R.id.profileFragment)
 
 fun getInflateLayout(context:Context, layout:Int): View? {
     val layoutInflater: LayoutInflater = LayoutInflater.from(context)

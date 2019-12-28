@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.zolad:zoominimageview:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1cc8ae160e59251b28fa761c88fcbc6c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1cc8ae160e59251b28fa761c88fcbc6c/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zolad/zoominimageview/1.0.0/77c45927ce58131fdabb855d1a1662374e633e5/zoominimageview-1.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zolad/zoominimageview/1.0.0/a0e5b13517313f6d773c9f4dc3b22e1c9718503b/zoominimageview-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

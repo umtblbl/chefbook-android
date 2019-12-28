@@ -3,17 +3,22 @@
 
     <item
         android:id="@+id/flow"
-        android:icon="@drawable/search_24dp"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="Post of flow" />
 
     <item
         android:id="@+id/discovery"
-        android:icon="@drawable/user3_24dp"
+        android:icon="@drawable/search_24dp"
         android:title="Discovery of user" />
 
     <item
+        android:id="@+id/addPost"
+        android:icon="@drawable/ic_add_circle_outline_black_24dp"
+        android:title="Add Post" />
+
+    <item
         android:id="@+id/profile"
-        android:icon="@drawable/user3_24dp"
+        android:icon="@drawable/ic_person_outline_black_24dp"
         android:title="My Profile" />
 
 

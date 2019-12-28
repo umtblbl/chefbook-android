@@ -87,6 +87,7 @@ class RegisterActivity : AppCompatActivity() {
                 true -> {
 
                     val intent = Intent(this, MainActivity::class.java)
+
                     SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
                         .setTitleText("Kayıt Başarılı!")
                         .setConfirmButton("Ok", object : SweetAlertDialog.OnSweetClickListener {

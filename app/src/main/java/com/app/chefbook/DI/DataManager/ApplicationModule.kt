@@ -8,7 +8,9 @@ import com.app.chefbook.Data.Preferences.IPrefHelper
 import com.app.chefbook.Data.Preferences.PrefHelper
 import com.app.chefbook.Data.Remote.IApiHelper
 import com.app.chefbook.Data.Remote.ApiHelper
+import com.app.chefbook.Data.Remote.Interface.IProfileService
 import com.app.chefbook.Data.Remote.Interface.IUserAuthService
+import com.app.chefbook.Data.Remote.Service.ProfileService
 import com.app.chefbook.Data.Remote.Service.UserAuthService
 import dagger.Module
 import dagger.Provides
@@ -28,7 +30,7 @@ class ApplicationModule constructor(application: Application) {
 
     @Singleton
     @Provides
-    internal fun providesApiHelper(userAuthService: UserAuthService): IApiHelper = ApiHelper(userAuthService)
+    internal fun providesApiHelper(userAuthService: UserAuthService, profileService: ProfileService): IApiHelper = ApiHelper(userAuthService, profileService)
 
     @Singleton
     @Provides
@@ -37,5 +39,9 @@ class ApplicationModule constructor(application: Application) {
     @Singleton
     @Provides
     internal fun providesUserAuthService(): IUserAuthService = UserAuthService()
+
+    @Singleton
+    @Provides
+    internal fun providesProfileService(): IProfileService = ProfileService()
 
 }

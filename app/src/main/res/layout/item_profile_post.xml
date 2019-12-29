@@ -23,13 +23,40 @@
                 android:src="@drawable/kofte"/>
 
             <LinearLayout
+                android:id="@+id/lnStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="7dp"
+                android:background="@drawable/transparent_radius_background"
+                android:layout_alignTop="@id/lnPointComment">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_star_gold_24dp"
+                    android:layout_marginStart="2dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.7"
+                    android:textColor="@color/colorGold"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnPointComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@id/imgPost"
                 android:layout_alignTop="@id/imgPost"
                 android:orientation="horizontal"
                 android:layout_marginEnd="7dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/transparent_radius_background">
 
                 <ImageView

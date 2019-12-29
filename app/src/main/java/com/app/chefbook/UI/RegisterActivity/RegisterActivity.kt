@@ -90,11 +90,7 @@ class RegisterActivity : AppCompatActivity() {
 
                     SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
                         .setTitleText("Kayıt Başarılı!")
-                        .setConfirmButton("Ok", object : SweetAlertDialog.OnSweetClickListener {
-                            override fun onClick(sweetAlertDialog: SweetAlertDialog?) {
-                                startActivity(intent)
-                            }
-                        })
+                        .setConfirmButton("Ok") { startActivity(intent) }
                         .show()
                 }
 

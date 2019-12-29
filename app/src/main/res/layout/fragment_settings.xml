@@ -1,0 +1,154 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.app.chefbook.UI.SettingsFragment.SettingsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_UserName"
+            app:counterEnabled="true"
+            app:counterMaxLength="16"
+            app:counterTextAppearance="@style/CounterStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rect1"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="15dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/regUserName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:hint="@string/userName"
+                android:singleLine="true"
+                android:text="mehmetceylan35"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:ignore="SmallSp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_FullName"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            app:counterTextAppearance="@style/CounterStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rect1"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="15dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/regFullName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:hint="@string/fullname"
+                android:singleLine="true"
+                android:text="Mehmet Ceylan"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:ignore="SmallSp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_Description"
+            app:counterEnabled="true"
+            app:counterMaxLength="150"
+            app:counterTextAppearance="@style/CounterStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rect1"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="15dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/regDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:hint="@string/biography"
+                android:maxLines="5"
+                android:text="Selam Cheffers'lar, ben CZNBurak. En güzel tariflerimi ve en eğlenceli sunumlarımı içeren videoları izlemek için takipte kalın, görüşmek üzere... :)"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:ignore="SmallSp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_Mail"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            app:counterTextAppearance="@style/CounterStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rect1"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="15dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/regMail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:hint="@string/email"
+                android:singleLine="true"
+                android:text="mehmetceylan35@gmail.com"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:ignore="SmallSp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSaveSetting"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bt_uisquare"
+            android:text="Kaydet"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/btnPasswordChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/transparent_button_blue_purple"
+            android:gravity="start|center"
+            android:paddingStart="30dp"
+            android:text="Şifre Değiştir"
+            tools:ignore="RtlSymmetry" />
+
+    </LinearLayout>
+
+</ScrollView>

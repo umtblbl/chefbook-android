@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, Bottom
     private val backStack = Stack<Int>()
 
     private val fragments = listOf(
-        BaseFragment.newInstance(R.layout.content_flow_base, R.id.toolbar_flow, R.id.nav_container_flow),
-        BaseFragment.newInstance(R.layout.content_discovery_base, R.id.toolbar_discovery, R.id.nav_container_discovery),
-        BaseFragment.newInstance(R.layout.content_profile_base, R.id.toolbar_profile, R.id.nav_container_profile))
+        BaseFragment.newInstance(R.layout.content_flow_base, R.id.toolbar_flow_content, R.id.nav_container_flow),
+        BaseFragment.newInstance(R.layout.content_discovery_base, R.id.toolbar_discovery_content, R.id.nav_container_discovery),
+        BaseFragment.newInstance(R.layout.content_profile_base, R.id.toolbar_profile_content, R.id.nav_container_profile))
 
     private val indexToPage = mapOf(0 to R.id.flow, 1 to R.id.discovery, 2 to R.id.profile)
 

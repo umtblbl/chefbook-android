@@ -12,6 +12,7 @@ import com.app.chefbook.DI.DataManager.componentActivity
 import com.app.chefbook.Data.IDataManager
 import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
 import com.app.chefbook.R
+import com.app.chefbook.UI.MainActivity.MainActivity
 import com.app.chefbook.UI.RegisterActivity.RegisterActivity
 import com.app.chefbook.UI.RegisterActivity.RegisterViewModel
 import com.app.chefbook.UI.RegisterActivity.RegisterViewModelFactory
@@ -44,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                 layout_Email.error = "En fazla 50 karakter olmalı"
                 registerState = false
             }
-            if(logPassword.length() < 8 || logPassword.length() > 16) {
+            if(logPassword.length() < 1 || logPassword.length() > 16) {
                 layout_Password.error = "En az 8, en fazla 16 karakter olmalı"
                 registerState = false
             }
@@ -73,13 +74,17 @@ class LoginActivity : AppCompatActivity() {
 
             when (it) {
                 true -> {
+
+                    val intent = Intent(this, MainActivity::class.java)
+
                     SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Kayıt Başarılı!")
+                        .setTitleText("Giriş Yapıldı!")
+                        .setConfirmButton("OK") { startActivity(intent) }
                         .show()
                 }
                 false -> {
                     SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Kayıt Başarısız!")
+                        .setTitleText("Başarısız!")
                         .setContentText(viewModel.errorResponse.toString())
                         .show()
                 }

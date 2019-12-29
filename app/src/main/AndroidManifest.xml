@@ -13,20 +13,28 @@
         tools:replace="android:icon"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".UI.LoginActivity.LoginActivity"></activity>
-        <activity
-            android:name=".UI.RegisterActivity.RegisterActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".UI.LoginActivity.LoginActivity">
 
-        </activity>
-        <activity android:name=".UI.MainActivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".UI.RegisterActivity.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen">
+
+
+
+        </activity>
+
+        <activity android:name=".UI.MainActivity.MainActivity">
+
         </activity>
 
         <meta-data

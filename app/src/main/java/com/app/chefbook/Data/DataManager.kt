@@ -6,6 +6,7 @@ import com.app.chefbook.Data.Remote.IApiHelper
 import com.app.chefbook.Data.Remote.ServiceCallBack
 import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
+import com.app.chefbook.Model.ServiceModel.ResponseModel.Profile
 import javax.inject.Inject
 
 class DataManager @Inject constructor(apiHelper: IApiHelper, prefHelper: PrefHelper) : IDataManager {
@@ -19,6 +20,10 @@ class DataManager @Inject constructor(apiHelper: IApiHelper, prefHelper: PrefHel
 
     override fun loginUser(loginUser: LoginUser, callBack: ServiceCallBack<String>) {
         apiHelper?.loginUser(loginUser, callBack)
+    }
+
+    override fun getProfile(accessToken: String, callBack: ServiceCallBack<Profile>) {
+        apiHelper?.getProfile(accessToken, callBack)
     }
 
     override fun saveUdid(udid: String) {

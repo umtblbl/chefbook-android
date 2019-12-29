@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imgCover"
+            android:id="@+id/imgProfileCover"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
@@ -30,8 +30,8 @@
             android:layout_marginEnd="15dp"
             android:elevation="30dp"
             app:cardCornerRadius="30dp"
-            app:layout_constraintEnd_toEndOf="@+id/imgCover"
-            app:layout_constraintStart_toStartOf="@+id/imgCover"
+            app:layout_constraintEnd_toEndOf="@+id/imgProfileCover"
+            app:layout_constraintStart_toStartOf="@+id/imgProfileCover"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
@@ -115,11 +115,11 @@
                     android:id="@+id/txtBiography"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selam Cheffers'lar, ben CZNBurak. En güzel tariflerimi ve en eğlenceli sunumlarımı içeren videoları izlemek için takipte kalın, görüşmek üzere... :)"
-                    android:padding="7dp"
                     android:layout_marginStart="5dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorBlack"/>
+                    android:padding="7dp"
+                    android:text="Selam Cheffers'lar, ben CZNBurak. En güzel tariflerimi ve en eğlenceli sunumlarımı içeren videoları izlemek için takipte kalın, görüşmek üzere... :)"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -135,49 +135,52 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgProfile"
+                android:id="@+id/imgProfilePicture"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/czn"
                 app:civ_border_color="@color/colorWhite"
                 app:civ_border_width="4dp"
-                app:layout_constraintEnd_toEndOf="@+id/imgCover"
-                app:layout_constraintStart_toStartOf="@+id/imgCover"
+                app:layout_constraintEnd_toEndOf="@+id/imgProfileCover"
+                app:layout_constraintStart_toStartOf="@+id/imgProfileCover"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="#99212121"
-            app:cardCornerRadius="70dp"
-            app:layout_constraintEnd_toEndOf="@id/cardViewProfilePicture"
-            app:layout_constraintBottom_toBottomOf="@id/cardViewProfilePicture">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit_white_24dp"
-                android:layout_gravity="center"/>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="#99212121"
-            app:cardCornerRadius="70dp"
+            android:background="@drawable/transparent_radius_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit_white_24dp"
-                android:layout_gravity="center"/>
-        </androidx.cardview.widget.CardView>
 
+            <ImageView
+                android:id="@+id/imgEditProfileCover"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_edit_white_24dp" />
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/cardViewProfilePicture"
+            app:layout_constraintEnd_toEndOf="@id/cardViewProfilePicture">
+
+            <ImageView
+                android:id="@+id/imgEditProfilePicture"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/transparent_radius_background"
+                android:src="@drawable/ic_edit_white_24dp"
+                app:layout_constraintBottom_toBottomOf="@id/cardViewProfilePicture"
+                app:layout_constraintEnd_toEndOf="@id/cardViewProfilePicture" />
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -186,9 +189,9 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recViewPost"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recViewPost"/>
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 

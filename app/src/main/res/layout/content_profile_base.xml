@@ -8,10 +8,11 @@
     tools:context=".UI.BaseFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_profile"
+        android:id="@+id/toolbar_profile_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        android:elevation="30dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -25,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_profile"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_profile_content"
         app:navGraph="@navigation/nav_graph_profile"/>
 
 

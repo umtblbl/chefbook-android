@@ -9,6 +9,7 @@
     <color name="colorControlHighlight">@color/colorAccent</color>
 
     <color name="colorBlue">#28A2CF</color>
+    <color name="colorBlack">#212121</color>
     <color name="colorBlueT">#6428a2cf</color>
     <color name="colorPurple">#A130FF</color>
     <color name="colorPurpleT">#64a130ff</color>

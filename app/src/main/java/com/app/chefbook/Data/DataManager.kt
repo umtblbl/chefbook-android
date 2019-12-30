@@ -2,7 +2,7 @@ package com.app.chefbook.Data
 
 import com.app.chefbook.Data.Preferences.IPrefHelper
 import com.app.chefbook.Data.Preferences.PrefHelper
-import com.app.chefbook.Data.Remote.IApiHelper
+import com.app.chefbook.Data.Remote.ApiHelper.IApiHelper
 import com.app.chefbook.Data.Remote.ServiceCallBack
 import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser

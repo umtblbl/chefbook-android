@@ -18,13 +18,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.chefbook.DI.DataManager.componentFragment
 import com.app.chefbook.Data.DataManager
 import com.app.chefbook.R
+import com.app.chefbook.UI.Adapters.ProfilePostAdapter
+import com.app.chefbook.UI.Adapters.RecyclerViewOnClickListener
 import com.app.chefbook.Utilities.getInflateLayout
+import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
 
     companion object {
         fun newInstance() = ProfileFragment()
@@ -36,14 +40,20 @@ class ProfileFragment : Fragment() {
     private var imgToolbarSettings: ImageView? = null
     private var txtUserNameToolbar: TextView? = null
     var toolbar: Toolbar? = null
+    lateinit var profilePostAdapter: ProfilePostAdapter
 
     @Inject
     lateinit var dataManager: DataManager
 
-    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         componentFragment.inject(this)
-        viewModel = ViewModelProviders.of(this, ProfileViewModelFactory(dataManager)).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ProfileViewModelFactory(dataManager))
+            .get(ProfileViewModel::class.java)
 
         initializeToolbar()
 
@@ -53,8 +63,11 @@ class ProfileFragment : Fragment() {
 
         viewModel.profile.observe(this, Observer {
 
-            var profile = viewModel.profile
-
+            //txtUserNameToolbar?.text = it.userName ***************** DAHA SONRA PROFİL VERİLERİ DOLDURULACAK *************
+            profilePostAdapter = ProfilePostAdapter(it, this)
+            recViewPost.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            recViewPost.adapter = profilePostAdapter
+            profilePostAdapter.notifyDataSetChanged()
         })
 
         return view
@@ -83,7 +96,6 @@ class ProfileFragment : Fragment() {
         txtUserNameToolbar = toolbarProfile?.findViewById(R.id.txtUserId)
 
         toolbar?.addView(toolbarProfile)
-
     }
 
     override fun onDestroy() {
@@ -94,5 +106,9 @@ class ProfileFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         toolbar?.removeView(toolbarProfile)
+    }
+
+    override fun onClick(item: String) {
+        Toast.makeText(context, "Id = $item", Toast.LENGTH_LONG).show()
     }
 }

@@ -2,7 +2,7 @@ package com.app.chefbook.Data.Remote.Service
 
 import android.annotation.SuppressLint
 import android.util.Log
-import com.app.chefbook.Data.Remote.ApiInterface
+import com.app.chefbook.Data.Remote.Retrofit.ApiInterface
 import com.app.chefbook.Data.Remote.Interface.IUserAuthService
 import com.app.chefbook.Data.Remote.ServiceCallBack
 import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser

@@ -1,8 +1,5 @@
 package com.app.chefbook.Model.ServiceModel.ResponseModel
 
-
-import com.google.gson.annotations.SerializedName
-
 data class Profile(
     val cover: String,
     val description: String,
@@ -21,6 +18,7 @@ data class Profile(
         val id: String,
         val pictureUrl: String,
         val rateNumber: String,
-        val title: String
+        val title: String,
+        val likeCount: String
     )
 }

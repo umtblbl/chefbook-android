@@ -10,6 +10,8 @@
 
     <color name="colorBlue">#28A2CF</color>
     <color name="colorPurple">#A130FF</color>
+    <color name="colorLightBlue">#90caf9</color>
+    <color name="colorLightPurple">#b39ddb</color>
     <color name="colorTransparentBlue">#1528A2CF</color>
     <color name="colorTransparentPurple">#15A130FF</color>
     <color name="colorGold">#FFD700</color>

@@ -1,21 +1,18 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.app.chefbook.UI.SettingsFragment.SettingsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_UserName"
-            app:counterEnabled="true"
-            app:counterMaxLength="16"
-            app:counterTextAppearance="@style/CounterStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -24,16 +21,18 @@
             android:paddingTop="2dp"
             android:paddingEnd="15dp"
             android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimaryDark">
+            android:textColorHint="@color/colorPrimaryDark"
+            app:counterEnabled="true"
+            app:counterMaxLength="16"
+            app:counterTextAppearance="@style/CounterStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/regUserName"
+                android:id="@+id/changeUserName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:hint="@string/userName"
                 android:singleLine="true"
-                android:text="mehmetceylan35"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 tools:ignore="SmallSp" />
@@ -42,9 +41,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_FullName"
-            app:counterEnabled="true"
-            app:counterMaxLength="50"
-            app:counterTextAppearance="@style/CounterStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -53,16 +49,18 @@
             android:paddingTop="2dp"
             android:paddingEnd="15dp"
             android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimaryDark">
+            android:textColorHint="@color/colorPrimaryDark"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            app:counterTextAppearance="@style/CounterStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/regFullName"
+                android:id="@+id/changeFullName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:hint="@string/fullname"
                 android:singleLine="true"
-                android:text="Mehmet Ceylan"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 tools:ignore="SmallSp" />
@@ -70,10 +68,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_Description"
-            app:counterEnabled="true"
-            app:counterMaxLength="150"
-            app:counterTextAppearance="@style/CounterStyle"
+            android:id="@+id/layout_Biography"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -82,16 +77,18 @@
             android:paddingTop="2dp"
             android:paddingEnd="15dp"
             android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimaryDark">
+            android:textColorHint="@color/colorPrimaryDark"
+            app:counterEnabled="true"
+            app:counterMaxLength="150"
+            app:counterTextAppearance="@style/CounterStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/regDescription"
+                android:id="@+id/changeBiography"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:hint="@string/biography"
                 android:maxLines="5"
-                android:text="Selam Cheffers'lar, ben CZNBurak. En güzel tariflerimi ve en eğlenceli sunumlarımı içeren videoları izlemek için takipte kalın, görüşmek üzere... :)"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 tools:ignore="SmallSp" />
@@ -99,10 +96,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_Mail"
-            app:counterEnabled="true"
-            app:counterMaxLength="50"
-            app:counterTextAppearance="@style/CounterStyle"
+            android:id="@+id/layout_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -111,16 +105,18 @@
             android:paddingTop="2dp"
             android:paddingEnd="15dp"
             android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimaryDark">
+            android:textColorHint="@color/colorPrimaryDark"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            app:counterTextAppearance="@style/CounterStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/regMail"
+                android:id="@+id/changeEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:hint="@string/email"
                 android:singleLine="true"
-                android:text="mehmetceylan35@gmail.com"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 tools:ignore="SmallSp" />
@@ -128,12 +124,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnSaveSetting"
+            android:id="@+id/btnSaveSettings"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/bt_uisquare"
-            android:text="Kaydet"
+            android:text="@string/save"
             android:textColor="@color/colorWhite" />
 
         <Button

@@ -1,6 +1,5 @@
 package com.app.chefbook.Data.Remote.ApiHelper
 
-import com.app.chefbook.Data.Remote.Interface.IProfileService
-import com.app.chefbook.Data.Remote.Interface.IUserAuthService
+import com.app.chefbook.Data.Remote.Interface.IUserService
 
-interface IApiHelper: IUserAuthService, IProfileService
+interface IApiHelper: IUserService

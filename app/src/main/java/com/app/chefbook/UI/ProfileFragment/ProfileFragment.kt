@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
@@ -25,6 +26,7 @@ import com.app.chefbook.R
 import com.app.chefbook.UI.Adapters.ProfilePostAdapter
 import com.app.chefbook.UI.Adapters.RecyclerViewOnClickListener
 import com.app.chefbook.Utilities.getInflateLayout
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
@@ -35,12 +37,12 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
     }
 
     private lateinit var viewModel: ProfileViewModel
-
     private var toolbarProfile: View? = null
     private var imgToolbarSettings: ImageView? = null
     private var txtUserNameToolbar: TextView? = null
     var toolbar: Toolbar? = null
     lateinit var profilePostAdapter: ProfilePostAdapter
+    var userName: String = ""
 
     @Inject
     lateinit var dataManager: DataManager
@@ -56,16 +58,23 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
             .get(ProfileViewModel::class.java)
 
         initializeToolbar()
-
-        val accessToken = dataManager.getAuth()
-        if (accessToken != null)
-            viewModel.getProfile(accessToken)
+        viewModel.getProfile()
 
         viewModel.profile.observe(this, Observer {
 
-            //txtUserNameToolbar?.text = it.userName ***************** DAHA SONRA PROFİL VERİLERİ DOLDURULACAK *************
+            userName = it.userName
+            txtSharingCount.text = it.postCount.toString()
+            txtFollowersCount.text = it.followerCount.toString()
+            txtFullName.text = it.fullName
+            txtBiography.text = it.description
+            txtUserNameToolbar?.text = it.userName.toString()
+
+            Picasso.with(context).load(it.profilePicture).into(imgProfilePicture)
+            Picasso.with(context).load(it.cover).into(imgProfileCover)
+
             profilePostAdapter = ProfilePostAdapter(it, this)
-            recViewPost.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            recViewPost.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             recViewPost.adapter = profilePostAdapter
             profilePostAdapter.notifyDataSetChanged()
         })
@@ -78,10 +87,12 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
 
         imgToolbarSettings?.setOnClickListener {
             Log.d("TAG", "Settings Tıklandı")
-            val action = ProfileFragmentDirections.actionProfileFragmentToSettingsFragment()
+            val action = ProfileFragmentDirections.actionProfileToSettings()
+            action.userName = userName
+            //val bundle = action.arguments
+            //bundle.putString("userName", userName)
             findNavController().navigate(action).let { true }
         }
-
     }
 
     private fun initializeToolbar() {
@@ -98,17 +109,18 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
         toolbar?.addView(toolbarProfile)
     }
 
+    override fun onClick(item: String) {
+        Toast.makeText(context, "Id = $item", Toast.LENGTH_LONG).show()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         toolbar?.removeView(toolbarProfile)
     }
 
-    override fun onPause() {
-        super.onPause()
-        toolbar?.removeView(toolbarProfile)
+    override fun onResume() {
+        super.onResume()
+        viewModel.getProfile()
     }
 
-    override fun onClick(item: String) {
-        Toast.makeText(context, "Id = $item", Toast.LENGTH_LONG).show()
-    }
 }

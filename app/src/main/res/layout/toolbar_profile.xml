@@ -10,7 +10,6 @@
         android:id="@+id/txtUserId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="cznburak"
         android:textColor="@color/colorWhite"
         android:layout_centerVertical="true"
         android:textSize="18sp"

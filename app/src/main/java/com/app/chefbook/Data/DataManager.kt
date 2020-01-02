@@ -4,9 +4,12 @@ import com.app.chefbook.Data.Preferences.IPrefHelper
 import com.app.chefbook.Data.Preferences.PrefHelper
 import com.app.chefbook.Data.Remote.ApiHelper.IApiHelper
 import com.app.chefbook.Data.Remote.ServiceCallBack
+import com.app.chefbook.Model.ServiceModel.RequestModel.ChangePassword
+import com.app.chefbook.Model.ServiceModel.RequestModel.ChangeProfile
 import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
 import com.app.chefbook.Model.ServiceModel.ResponseModel.Profile
+import com.app.chefbook.Model.ServiceModel.ResponseModel.ProfileDetails
 import javax.inject.Inject
 
 class DataManager @Inject constructor(apiHelper: IApiHelper, prefHelper: PrefHelper) : IDataManager {
@@ -22,8 +25,20 @@ class DataManager @Inject constructor(apiHelper: IApiHelper, prefHelper: PrefHel
         apiHelper?.loginUser(loginUser, callBack)
     }
 
-    override fun getProfile(accessToken: String, callBack: ServiceCallBack<Profile>) {
-        apiHelper?.getProfile(accessToken, callBack)
+    override fun getProfile(callBack: ServiceCallBack<Profile>) {
+        apiHelper?.getProfile(callBack)
+    }
+
+    override fun changePassword(changePassword: ChangePassword, callBack: ServiceCallBack<String>) {
+        apiHelper?.changePassword(changePassword, callBack)
+    }
+
+    override fun getProfileDetails(callBack: ServiceCallBack<ProfileDetails>) {
+        apiHelper?.getProfileDetails(callBack)
+    }
+
+    override fun changeProfile(changeProfile: ChangeProfile, callBack: ServiceCallBack<String>) {
+        apiHelper?.changeProfile(changeProfile, callBack)
     }
 
     override fun saveUdid(udid: String) {
@@ -41,5 +56,4 @@ class DataManager @Inject constructor(apiHelper: IApiHelper, prefHelper: PrefHel
     override fun getAuth(): String? {
         return prefHelper!!.getAuth()
     }
-
 }

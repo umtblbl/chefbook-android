@@ -1,29 +1,40 @@
 package com.app.chefbook.Data.Remote.ApiHelper
 
-import com.app.chefbook.Data.Remote.Service.ProfileService
-import com.app.chefbook.Data.Remote.Service.UserAuthService
+import com.app.chefbook.Data.Remote.Service.UserService
 import com.app.chefbook.Data.Remote.ServiceCallBack
+import com.app.chefbook.Model.ServiceModel.RequestModel.ChangePassword
+import com.app.chefbook.Model.ServiceModel.RequestModel.ChangeProfile
 import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
 import com.app.chefbook.Model.ServiceModel.ResponseModel.Profile
+import com.app.chefbook.Model.ServiceModel.ResponseModel.ProfileDetails
 import javax.inject.Inject
 
-class ApiHelper @Inject constructor (userAuthService: UserAuthService, profileService: ProfileService) :
-    IApiHelper {
+class ApiHelper @Inject constructor (userService: UserService) : IApiHelper {
 
-    var userAuthService: UserAuthService? = userAuthService
-    var profileService: ProfileService? = profileService
+    var userService: UserService? = userService
 
     override fun registerUser(registerUser: RegisterUser, callBack: ServiceCallBack<String>) {
-        userAuthService?.registerUser(registerUser, callBack)
+        userService?.registerUser(registerUser, callBack)
     }
 
-    override fun getProfile(accessToken: String, callBack: ServiceCallBack<Profile>) {
-        profileService?.getProfile(accessToken, callBack)
+    override fun getProfile(callBack: ServiceCallBack<Profile>) {
+        userService?.getProfile(callBack)
+    }
+
+    override fun changePassword(changePassword: ChangePassword, callBack: ServiceCallBack<String>) {
+        userService?.changePassword(changePassword, callBack)
+    }
+
+    override fun getProfileDetails(callBack: ServiceCallBack<ProfileDetails>) {
+        userService?.getProfileDetails(callBack)
+    }
+
+    override fun changeProfile(changeProfile: ChangeProfile, callBack: ServiceCallBack<String>) {
+        userService?.changeProfile(changeProfile, callBack)
     }
 
     override fun loginUser(loginUser: LoginUser, callBack: ServiceCallBack<String>) {
-        userAuthService?.loginUser(loginUser, callBack)
+        userService?.loginUser(loginUser, callBack)
     }
-
 }

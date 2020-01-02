@@ -4,6 +4,7 @@ import com.app.chefbook.UI.LoginActivity.LoginActivity
 import com.app.chefbook.UI.MainActivity.MainActivity
 import com.app.chefbook.UI.ProfileFragment.ProfileFragment
 import com.app.chefbook.UI.RegisterActivity.RegisterActivity
+import com.app.chefbook.UI.SettingsFragment.SettingsFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -16,5 +17,6 @@ interface ApplicationComponent {
     fun inject(registerActivity: RegisterActivity)
     fun inject(loginActivity: LoginActivity)
     fun inject(profileFragment: ProfileFragment)
+    fun inject(settingsFragment: SettingsFragment)
 
 }

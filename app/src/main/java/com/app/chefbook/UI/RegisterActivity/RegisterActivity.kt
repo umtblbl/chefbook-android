@@ -29,14 +29,16 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         componentActivity.inject(this)
-        viewModel = ViewModelProviders.of(this, RegisterViewModelFactory(dataManager)).get(RegisterViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, RegisterViewModelFactory(dataManager))
+            .get(RegisterViewModel::class.java)
 
         val animation = AnimationUtils.loadAnimation(this, R.anim.uptodown)
         rlayout.animation = animation
 
-        val loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
+        val loadingDialog =
+            SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
 
-        txtLogin.setOnClickListener {startActivity(Intent(this, LoginActivity::class.java)) }
+        txtLogin.setOnClickListener { startActivity(Intent(this, LoginActivity::class.java)) }
 
         btnRegister.setOnClickListener {
 
@@ -47,35 +49,34 @@ class RegisterActivity : AppCompatActivity() {
 
             var registerState = true
 
-            if(regUserName.length() < 8 || regUserName.length() > 16) {
+            if (regUserName.length() < 8 || regUserName.length() > 16) {
                 layout_UserName.error = "En az 8, en fazla 16 karakter olmalı"
                 registerState = false
             }
-            if(regMail.length() > 50 || !isValidEmail(regMail.text)) {
-                layout_Mail.error = "En fazla 30 karakterden oluşan geçerli bir mail adresi girin"
+            if (regMail.length() > 50 || !isValidEmail(regMail.text.toString())) {
+                layout_Mail.error = "En fazla 50 karakterden oluşan geçerli bir mail adresi girin"
                 registerState = false
             }
-            if(regPassword.length() < 8 || regPassword.length() > 16) {
+            if (regPassword.length() < 8 || regPassword.length() > 16) {
                 layout_Password.error = "En az 8, en fazla 16 karakter olmalı"
                 registerState = false
             }
-            if(regPasswordAgain.text.toString() != regPassword.text.toString()) {
+            if (regPasswordAgain.text.toString() != regPassword.text.toString()) {
                 layout_PasswordAgain.error = "Şifre tekrarı uyuşmalıdır"
                 registerState = false
             }
 
-            if(registerState) {
+            if (registerState) {
 
                 loadingDialog.show()
 
-                val registerUser = RegisterUser(
-                    userName = regUserName.text.toString(),
-                    mail = regMail.text.toString(),
-                    password = regPassword.text.toString()
+                viewModel.registerUser(
+                    RegisterUser(
+                        userName = regUserName.text.toString(),
+                        mail = regMail.text.toString(),
+                        password = regPassword.text.toString()
+                    )
                 )
-                viewModel.registerUser(registerUser)
-
-
             }
         }
 
@@ -101,10 +102,6 @@ class RegisterActivity : AppCompatActivity() {
                         .show()
                 }
             }
-
         })
-
-
-
     }
 }

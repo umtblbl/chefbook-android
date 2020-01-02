@@ -11,12 +11,19 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_settingsFragment"
+            android:id="@+id/action_profile_to_settings"
             app:destination="@id/settingsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.app.chefbook.UI.SettingsFragment.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <argument
+            android:name="userName"
+            app:argType="string"
+            android:defaultValue=" "/>
+    </fragment>
+
 </navigation>

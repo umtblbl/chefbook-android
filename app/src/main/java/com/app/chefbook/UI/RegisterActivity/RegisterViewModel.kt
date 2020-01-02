@@ -22,7 +22,6 @@ class RegisterViewModel (var dataManager: IDataManager) : ViewModel() {
                 //if StatusCode:200 ise bu işlemler yapılacak şekilde kontrol eklenecek.
                 dataManager.saveAuth(response)
                 isAuth.postValue(true)
-
             }
 
             override fun onError(message: String) {
@@ -30,6 +29,5 @@ class RegisterViewModel (var dataManager: IDataManager) : ViewModel() {
                 isAuth.postValue(false)
             }
         })
-
     }
 }

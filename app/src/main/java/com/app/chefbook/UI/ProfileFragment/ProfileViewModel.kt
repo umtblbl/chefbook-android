@@ -11,12 +11,10 @@ class ProfileViewModel (val dataManager: DataManager) : ViewModel() {
 
     var profile = MutableLiveData<Profile>()
 
-    fun getProfile(accessToken: String) {
-        dataManager.getProfile(accessToken, object : ServiceCallBack<Profile> {
+    fun getProfile() {
+        dataManager.getProfile(object : ServiceCallBack<Profile> {
             override fun onResponse(response: Profile) {
                 profile.postValue(response)
-                var asd = profile.value
-                var asd2 = asd
             }
 
             override fun onError(message: String) {

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_addpost"
+    app:startDestination="@id/postInitiatorFragment">
+
+    <fragment
+        android:id="@+id/postInitiatorFragment"
+        android:name="com.app.chefbook.UI.PostInitiatorFragment.PostInitiatorFragment"
+        android:label="fragment_post_initiator"
+        tools:layout="@layout/fragment_post_initiator" />
+</navigation>

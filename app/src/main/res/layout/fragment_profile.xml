@@ -151,6 +151,7 @@
                 app:cardCornerRadius="20dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -159,7 +160,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/transparent_radius_background"
+                    android:background="@drawable/transparent_edit_click"
                     android:src="@drawable/ic_edit_white_24dp"/>
             </androidx.cardview.widget.CardView>
 
@@ -167,6 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@id/cardViewProfilePicture"
                 app:layout_constraintEnd_toEndOf="@id/cardViewProfilePicture">
 
@@ -175,7 +177,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/transparent_radius_background"
+                    android:background="@drawable/transparent_edit_click"
                     android:src="@drawable/ic_edit_white_24dp"
                     app:layout_constraintBottom_toBottomOf="@id/cardViewProfilePicture"
                     app:layout_constraintEnd_toEndOf="@id/cardViewProfilePicture" />

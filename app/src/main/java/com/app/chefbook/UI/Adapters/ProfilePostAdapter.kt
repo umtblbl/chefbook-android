@@ -10,10 +10,7 @@ import com.app.chefbook.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_profile_post.view.*
 
-class ProfilePostAdapter(
-    private var profile: Profile,
-    var onClickListener: RecyclerViewOnClickListener
-) : RecyclerView.Adapter<ProfilePostAdapter.ProfileViewHolder>() {
+class ProfilePostAdapter(private var profile: Profile, var onClickListener: RecyclerViewOnClickListener) : RecyclerView.Adapter<ProfilePostAdapter.ProfileViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
         val inflater = LayoutInflater.from(parent.context)

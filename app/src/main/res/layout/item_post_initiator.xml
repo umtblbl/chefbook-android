@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="130dp"
+    android:layout_height="130dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="3dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/imgPost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/kofte"
+        android:scaleType="centerCrop" />
+
+    <VideoView
+        android:layout_gravity="center"
+        android:id="@+id/videoPost"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone" />
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

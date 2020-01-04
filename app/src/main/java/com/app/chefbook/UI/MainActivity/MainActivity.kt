@@ -30,9 +30,10 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, Bottom
     private val fragments = listOf(
         BaseFragment.newInstance(R.layout.content_flow_base, R.id.toolbar_flow_content, R.id.nav_container_flow),
         BaseFragment.newInstance(R.layout.content_discovery_base, R.id.toolbar_discovery_content, R.id.nav_container_discovery),
+        BaseFragment.newInstance(R.layout.content_addpost_base, R.id.toolbar_addPost_content, R.id.nav_container_addPost),
         BaseFragment.newInstance(R.layout.content_profile_base, R.id.toolbar_profile_content, R.id.nav_container_profile))
 
-    private val indexToPage = mapOf(0 to R.id.flow, 1 to R.id.discovery, 2 to R.id.profile)
+    private val indexToPage = mapOf(0 to R.id.flow, 1 to R.id.discovery, 2 to R.id.addPost , 3 to R.id.profile)
 
     @Inject
     lateinit var dataManager: IDataManager

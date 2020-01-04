@@ -105,5 +105,10 @@ dependencies {
     //Sweet Alert Dialog
     implementation 'com.github.f0ris.sweetalert:library:1.5.1'
 
+    //CameraKit
+    implementation 'com.camerakit:camerakit:1.0.0-beta3.11'
+    implementation 'com.camerakit:jpegkit:0.1.0'
 
+    //Camera Crop
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 }

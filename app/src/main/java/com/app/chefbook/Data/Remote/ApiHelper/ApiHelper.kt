@@ -8,6 +8,8 @@ import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
 import com.app.chefbook.Model.ServiceModel.ResponseModel.Profile
 import com.app.chefbook.Model.ServiceModel.ResponseModel.ProfileDetails
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 class ApiHelper @Inject constructor (userService: UserService) : IApiHelper {
@@ -32,6 +34,14 @@ class ApiHelper @Inject constructor (userService: UserService) : IApiHelper {
 
     override fun changeProfile(changeProfile: ChangeProfile, callBack: ServiceCallBack<String>) {
         userService?.changeProfile(changeProfile, callBack)
+    }
+
+    override fun uploadProfilePicture(picture: MultipartBody.Part, callBack: ServiceCallBack<String>) {
+        userService?.uploadProfilePicture(picture, callBack)
+    }
+
+    override fun uploadCoverPicture(coverPicture: MultipartBody.Part, callBack: ServiceCallBack<String>) {
+        userService?.uploadCoverPicture(coverPicture, callBack)
     }
 
     override fun loginUser(loginUser: LoginUser, callBack: ServiceCallBack<String>) {

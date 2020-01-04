@@ -7,6 +7,8 @@ import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
 import com.app.chefbook.Model.ServiceModel.ResponseModel.Profile
 import com.app.chefbook.Model.ServiceModel.ResponseModel.ProfileDetails
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 interface IUserService {
     fun registerUser(registerUser: RegisterUser, callBack: ServiceCallBack<String>)
@@ -15,4 +17,6 @@ interface IUserService {
     fun changePassword(changePassword: ChangePassword, callBack: ServiceCallBack<String>)
     fun getProfileDetails(callBack: ServiceCallBack<ProfileDetails>)
     fun changeProfile(changeProfile: ChangeProfile, callBack: ServiceCallBack<String>)
+    fun uploadProfilePicture(profilePicture: MultipartBody.Part, callBack: ServiceCallBack<String>)
+    fun uploadCoverPicture(coverPicture: MultipartBody.Part, callBack: ServiceCallBack<String>)
 }

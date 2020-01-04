@@ -6,6 +6,9 @@ import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
 import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
 import com.app.chefbook.Model.ServiceModel.ResponseModel.Profile
 import com.app.chefbook.Model.ServiceModel.ResponseModel.ProfileDetails
+import okhttp3.MultipartBody
+import okhttp3.Request
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -28,4 +31,12 @@ interface ApiInterface {
 
     @POST("User/changeprofile")
     fun changeProfile(@Body changeProfile: ChangeProfile): Call<String>
+
+    @Multipart
+    @PUT("User/profileimageupdate")
+    fun uploadProfilePicture(@Part profilePicture: MultipartBody.Part): Call<String>
+
+    @Multipart
+    @PUT("User/coverupdate")
+    fun uploadCoverPicture(@Part coverPicture: MultipartBody.Part): Call<String>
 }

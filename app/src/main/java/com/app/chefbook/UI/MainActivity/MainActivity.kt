@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager
 import com.app.chefbook.DI.DataManager.componentActivity
 import com.app.chefbook.Data.IDataManager
 import com.app.chefbook.R
-import com.app.chefbook.UI.BaseFragment
+import com.app.chefbook.UI.Utility.BaseFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*

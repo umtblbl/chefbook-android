@@ -12,6 +12,8 @@ import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
 import com.app.chefbook.Model.ServiceModel.ResponseModel.Profile
 import com.app.chefbook.Model.ServiceModel.ResponseModel.ProfileDetails
 import com.app.denemeinstagramapp.Data.Retrofit.ApiClient
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import javax.inject.Inject
 import retrofit2.Callback
@@ -34,14 +36,14 @@ class UserService @Inject constructor() : IUserService {
                     response.body()?.let { callBack.onResponse(it) }
                 else {
                     response.message().let { callBack.onError(it) }
-                    Log.e("# *** API ERROR *** : UserService-registerUser-notSuccessful #","" + response.message())
+                    Log.e("# *** API FAILURE *** : UserService-registerUser-notSuccessful #","" + response.message())
                 }
             }
 
             @SuppressLint("LongLogTag")
             override fun onFailure(call: Call<String>, t: Throwable) {
                 t.message?.let { callBack.onError(it) }
-                Log.e("# *** API ERROR *** : UserService-registerUser-onFailure #", "" + t.printStackTrace())
+                Log.e("# *** API FAILURE *** : UserService-registerUser-onFailure #", "" + t.printStackTrace())
             }
         })
     }
@@ -62,7 +64,7 @@ class UserService @Inject constructor() : IUserService {
             @SuppressLint("LongLogTag")
             override fun onFailure(call: Call<String>, t: Throwable) {
                 t.message?.let { callBack.onError(it) }
-                Log.e("# *** API ERROR *** : UserService-loginUser-onFailure #", "" + t.printStackTrace())
+                Log.e("# *** API FAILURE *** : UserService-loginUser-onFailure #", "" + t.printStackTrace())
             }
         })
     }
@@ -84,7 +86,7 @@ class UserService @Inject constructor() : IUserService {
             @SuppressLint("LongLogTag")
             override fun onFailure(call: Call<Profile>, t: Throwable) {
                 t.message?.let { callBack.onError(it) }
-                Log.e("# *** API ERROR *** : ProfileService-getProfile-onFailure #","" + t.printStackTrace())
+                Log.e("# *** API FAILURE *** : ProfileService-getProfile-onFailure #","" + t.printStackTrace())
             }
         })
     }
@@ -105,7 +107,7 @@ class UserService @Inject constructor() : IUserService {
             @SuppressLint("LongLogTag")
             override fun onFailure(call: Call<String>, t: Throwable) {
                 t.message?.let { callBack.onError(it) }
-                Log.e("# *** ERROR *** : UserService-changePassword-onFailure #","" + t.printStackTrace())
+                Log.e("# *** API FAILURE *** : UserService-changePassword-onFailure #","" + t.printStackTrace())
             }
         })
     }
@@ -128,7 +130,7 @@ class UserService @Inject constructor() : IUserService {
             @SuppressLint("LongLogTag")
             override fun onFailure(call: Call<ProfileDetails>, t: Throwable) {
                 t.message?.let { callBack.onError(it) }
-                Log.e("# *** ERROR *** : UserService-getProfileDetails-onFailure #","" + t.printStackTrace())
+                Log.e("# *** API FAILURE *** : UserService-getProfileDetails-onFailure #","" + t.printStackTrace())
             }
         })
     }
@@ -150,7 +152,53 @@ class UserService @Inject constructor() : IUserService {
             @SuppressLint("LongLogTag")
             override fun onFailure(call: Call<String>, t: Throwable) {
                 t.message?.let { callBack.onError(it) }
-                Log.e("# *** ERROR *** : UserService-changeProfile-onFailure #","" + t.printStackTrace())
+                Log.e("# *** API FAILURE *** : UserService-changeProfile-onFailure #","" + t.printStackTrace())
+            }
+        })
+    }
+
+    override fun uploadProfilePicture(profilePicture: MultipartBody.Part, callBack: ServiceCallBack<String>) {
+
+        apiInterface?.uploadProfilePicture(profilePicture)?.enqueue(object: Callback<String> {
+
+            @SuppressLint("LongLogTag")
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if(response.isSuccessful) {
+                    response.raw().code().let { callBack.onResponse(it.toString()) }
+                    Log.e("API", response.raw().code().toString())
+                }
+                else {
+                    response.raw().code().let { callBack.onError(it.toString()) }
+                    Log.e("# *** API ERROR *** : UserService-uploadProfilePicture-isSuccessfull:false ||| ","${response.message()} ||| Code: ${response.raw().code()}" )
+                }
+            }
+
+            @SuppressLint("LongLogTag")
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                t.message?.let { callBack.onError(it) }
+                Log.e("# *** API FAILURE *** : UserService-uploadProfilePicture-onFailure #","" + t.printStackTrace())
+            }
+        })
+    }
+
+    override fun uploadCoverPicture(coverPicture: MultipartBody.Part, callBack: ServiceCallBack<String>) {
+
+        apiInterface?.uploadCoverPicture(coverPicture)?.enqueue(object: Callback<String> {
+            @SuppressLint("LongLogTag")
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if(response.isSuccessful) {
+                    response.raw().code().let { callBack.onResponse(it.toString()) }
+                    Log.e("API", response.raw().code().toString())
+                }
+                else {
+                    response.raw().code().let { callBack.onError(it.toString()) }
+                    Log.e("# *** API ERROR *** : UserService-uploadCoverPicture-isSuccessfull:false ||| ","${response.message()} ||| Code: ${response.raw().code()}" )
+                }
+            }
+            @SuppressLint("LongLogTag")
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                t.message?.let { callBack.onError(it) }
+                Log.e("# *** API FAILURE *** : UserService-uploadCoverPicture-onFailure #","" + t.printStackTrace())
             }
         })
     }

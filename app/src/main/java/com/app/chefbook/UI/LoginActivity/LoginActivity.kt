@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                 layout_Email.error = "En fazla 50 karakter olmalı"
                 registerState = false
             }
-            if(logPassword.length() < 1 || logPassword.length() > 16) {
+            if(logPassword.length() < 8 || logPassword.length() > 16) {
                 layout_Password.error = "En az 8, en fazla 16 karakter olmalı"
                 registerState = false
             }

@@ -66,8 +66,7 @@ class SettingsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         var passwordChangeDialog: Dialog?
-        val loadingDialog =
-            SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
+        val loadingDialog = SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
         var btnSavePassword: Button? = null
 
         btnPasswordChange.setOnClickListener {

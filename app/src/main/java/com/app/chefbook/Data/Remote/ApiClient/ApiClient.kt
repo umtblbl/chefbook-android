@@ -15,10 +15,6 @@ object ApiClient {
     private var retrofit: Retrofit? = null
     private var accessToken: String = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0YmNiYmNiZi1kNzVmLTRjMGYtODIxYy0yYTgzM2Y4MDBmZjQiLCJ1bmlxdWVfbmFtZSI6InN0cmluZyIsIm5iZiI6MTU3Nzg4ODYyNCwiZXhwIjoxNTgwNDgwNjI0LCJpYXQiOjE1Nzc4ODg2MjR9.Qgy4y7uIw6qIC6hvzVyjbemhPIo2PZT0--B3DdbVMTBn0zVx2w0bo8Sk_I8cwNbMOx2CZkwVo-hzeba51aNzNA"
 
-    fun setAccessToken(accessToken: String) {
-        this.accessToken = accessToken
-    }
-
     val client: Retrofit?
         get() {
 

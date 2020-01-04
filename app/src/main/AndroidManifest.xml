@@ -4,30 +4,28 @@
     package="com.app.chefbook">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".DI.DataManager.DaggerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        tools:replace="android:icon"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".UI.LoginActivity.LoginActivity">
-
-        </activity>
-
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:icon">
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
+        <activity android:name=".UI.LoginActivity.LoginActivity"></activity>
         <activity
             android:name=".UI.RegisterActivity.RegisterActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen">
-
-        </activity>
-
+            android:theme="@style/AppTheme.FullScreen"></activity>
         <activity android:name=".UI.MainActivity.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,5 +1,6 @@
 package com.app.chefbook.UI.Adapters
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.Log
@@ -41,7 +42,7 @@ class PostInitiatorAdapter(private var postList: MutableList<PostInitiator>, var
         private var imgPost = item.imgPost
         private var videoPost = item.videoPost
 
-
+        @SuppressLint("ResourceAsColor")
         fun setData(post: PostInitiator, position: Int, onClickListener: RecyclerViewOnClickListener) {
 
             if (post.isPost) {
@@ -68,8 +69,6 @@ class PostInitiatorAdapter(private var postList: MutableList<PostInitiator>, var
                 imgPost.setImageResource(R.drawable.ic_add_a_photo_white_24dp)
                 imgPost.visibility = View.VISIBLE
             }*/
-
-
 
             itemPost?.setOnClickListener { onClickListener.onClick(position.toString()) }
         }

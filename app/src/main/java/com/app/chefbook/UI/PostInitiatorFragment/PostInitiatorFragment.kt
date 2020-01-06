@@ -22,6 +22,7 @@ import com.app.chefbook.UI.Adapters.RecyclerViewOnClickListener
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_post_initiator.*
+import java.io.File
 
 import javax.inject.Inject
 
@@ -33,7 +34,8 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
     lateinit var postInitiatorAdapter: PostInitiatorAdapter
     var postList = mutableListOf<PostInitiator>()
     private val uri: Uri = Uri.parse("android.resource://com.example.peeple/drawable/ic_add_a_photo_white_24dp")
-
+    lateinit var file: File
+    var isImage: Boolean? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

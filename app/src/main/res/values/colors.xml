@@ -12,11 +12,13 @@
     <color name="colorPurple">#A130FF</color>
     <color name="colorLightBlue">#90caf9</color>
     <color name="colorLightPurple">#b39ddb</color>
-    <color name="colorTransparentBlue">#1528A2CF</color>
-    <color name="colorTransparentPurple">#15A130FF</color>
+    <color name="colorTransparentBlue">#9090caf9</color>
+    <color name="colorTransparentPurple">#90b39ddb</color>
     <color name="colorGold">#FFD700</color>
     <color name="colorBlack">#212121</color>
     <color name="colorBlueT">#6428a2cf</color>
     <color name="colorPurpleT">#64a130ff</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="lightGray">#bdbdbd</color>
+    <color name="transparentGray">#909e9e9e</color>
 </resources>

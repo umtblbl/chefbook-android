@@ -134,8 +134,11 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
             pictureResultValue = true
             CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
+                .setCropShape(CropImageView.CropShape.OVAL)
+                .setAspectRatio(10,10)
+                .setFixAspectRatio(true)
+                .setBackgroundColor(R.color.colorBlue)
                 .start(context!!, this)
-
         }
 
         imgChangeCoverPicture.setOnClickListener {
@@ -143,6 +146,9 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
             pictureResultValue = false
             CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
+                .setAspectRatio(3,1)
+                .setFixAspectRatio(true)
+                .setBackgroundColor(R.color.colorBlue)
                 .start(context!!, this)
 
 

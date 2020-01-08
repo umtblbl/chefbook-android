@@ -2,15 +2,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.chefbook.UI.CameraActivity.CameraFragment">
+    tools:context="com.app.chefbook.UI.CameraFragment.CameraFragment">
+
 
     <com.otaliastudios.cameraview.CameraView
         android:id="@+id/cameraView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:keepScreenOn="true"
-        android:focusable="auto"/>
+        android:focusable="true"/>
 
+    <LinearLayout
+        android:id="@+id/lnCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:padding="6dp"
+        android:visibility="gone"
+        android:background="@drawable/transparent_radius_background">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:paddingStart="3dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_lens_red_24dp"
+            android:layout_marginStart="2dp" />
+
+        <Chronometer
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:paddingStart="7dp"
+            android:paddingEnd="3dp"
+            android:id="@+id/chronometer"
+            android:textColor="@color/colorWhite"/>
+
+    </LinearLayout>
     <Button
         android:id="@+id/btnCamera"
         android:layout_width="85dp"

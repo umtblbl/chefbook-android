@@ -17,8 +17,7 @@ import kotlinx.android.synthetic.main.item_post_initiator.view.*
 class PostInitiatorAdapter(private var postList: MutableList<PostInitiator>, var onClickListener: RecyclerViewOnClickListener) : RecyclerView.Adapter<PostInitiatorAdapter.PostInitiatorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostInitiatorViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val itemPost = inflater.inflate(R.layout.item_post_initiator, parent, false)
+        val itemPost = LayoutInflater.from(parent.context).inflate(R.layout.item_post_initiator, parent, false)
         return PostInitiatorViewHolder(itemPost)
     }
 
@@ -27,12 +26,11 @@ class PostInitiatorAdapter(private var postList: MutableList<PostInitiator>, var
     }
 
     override fun onBindViewHolder(holder: PostInitiatorViewHolder, position: Int) {
+
         val post = postList[position]
 
         holder.setData(post, position, onClickListener)
-        /* if ((position+1) == postList.size) {
-             holder.setData(post, (position+1), true, onClickListener)
-         }*/
+
     }
 
     class PostInitiatorViewHolder(var itemPost: View?) : RecyclerView.ViewHolder(itemPost!!) {
@@ -59,16 +57,6 @@ class PostInitiatorAdapter(private var postList: MutableList<PostInitiator>, var
                 videoPost.setVideoURI(post.postUri)
                 videoPost.visibility = View.VISIBLE
             }
-
-            // postValue if true -> photo, else -> video
-            // isPost if true -> Post, else -> value should be postAddImage
-            /*if (isAddImage) {
-                Log.d("recycler", "isAddImage:true")
-                videoPost.visibility = View.GONE
-                //imgPost.setPadding(30, 30, 30, 30)
-                imgPost.setImageResource(R.drawable.ic_add_a_photo_white_24dp)
-                imgPost.visibility = View.VISIBLE
-            }*/
 
             itemPost?.setOnClickListener { onClickListener.onClick(position.toString()) }
         }

@@ -19,6 +19,7 @@ import com.app.chefbook.Model.AdapterModel.PostInitiator
 import com.app.chefbook.R
 import com.app.chefbook.UI.Adapters.PostInitiatorAdapter
 import com.app.chefbook.UI.Adapters.RecyclerViewOnClickListener
+import com.app.chefbook.Utilities.Utility
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_post_initiator.*
@@ -49,9 +50,10 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val spanCount = Utility.calculateNoOfColumns(context!!, 125f)
         postList.add(PostInitiator(uri, isPost = true, isAddImage = true))
         postInitiatorAdapter = PostInitiatorAdapter(postList, this)
-        recViewPostInitiator.layoutManager = GridLayoutManager(context, 3)
+        recViewPostInitiator.layoutManager = GridLayoutManager(context, spanCount)
         recViewPostInitiator.adapter = postInitiatorAdapter
         postInitiatorAdapter.notifyDataSetChanged()
 

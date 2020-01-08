@@ -15,15 +15,13 @@
         android:layout_gravity="center"
         android:id="@+id/imgPost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/kofte"
-        android:scaleType="centerCrop" />
+        android:layout_height="match_parent"/>
 
     <VideoView
         android:layout_gravity="center"
         android:id="@+id/videoPost"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="gone" />
 
     </androidx.cardview.widget.CardView>

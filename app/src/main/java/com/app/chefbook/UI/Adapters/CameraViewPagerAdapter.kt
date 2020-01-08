@@ -3,8 +3,8 @@ package com.app.chefbook.UI.Adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.app.chefbook.UI.CameraActivity.CameraFragment
-import com.app.chefbook.UI.CameraActivity.GalleryFragment
+import com.app.chefbook.UI.CameraFragment.CameraFragment
+import com.app.chefbook.UI.GalleryFragment.GalleryFragment
 
 class CameraViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -20,13 +20,12 @@ class CameraViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEH
     }
 
     override fun getCount(): Int {
-        return 3
+        return 2
     }
 
     override fun getPageTitle(position: Int): CharSequence {
         return when (position) {
             0 -> "Camera"
-            1 -> "Video"
             else -> {
                 return "Gallery"
             }

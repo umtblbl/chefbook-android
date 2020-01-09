@@ -15,7 +15,8 @@
         android:layout_gravity="center"
         android:id="@+id/imgPost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
 
     <VideoView
         android:layout_gravity="center"

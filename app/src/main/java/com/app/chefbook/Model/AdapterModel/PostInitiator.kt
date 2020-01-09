@@ -4,6 +4,6 @@ import android.net.Uri
 
 class PostInitiator(
     val postUri: Uri,
-    val isPost: Boolean, // if true -> photo, else -> video
-    val isAddImage: Boolean // if true -> add icon
+    val isImage: Boolean, // if true -> photo, else -> video
+    val isAddPost: Boolean // if true -> add icon
 )

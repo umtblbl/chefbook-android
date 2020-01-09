@@ -34,7 +34,7 @@ class SettingsFragment : Fragment() {
     lateinit var dataManager: DataManager
     private lateinit var viewModel: SettingsViewModel
     var userName: String = ""
-    //var toolbar: Toolbar? = null
+    //var toolbar_gallery: Toolbar? = null
     private var repUserName: String = ""
 
     override fun onCreateView(
@@ -55,9 +55,9 @@ class SettingsFragment : Fragment() {
 
         activity?.actionBar?.title = userName
         //requireActivity().title = userName
-        //toolbar = requireActivity().findViewById(R.id.toolbar_profile_content) as Toolbar
-        //toolbar!!.removeAllViewsInLayout()
-        //toolbar!!.title = userName
+        //toolbar_gallery = requireActivity().findViewById(R.id.toolbar_profile_content) as Toolbar
+        //toolbar_gallery!!.removeAllViewsInLayout()
+        //toolbar_gallery!!.title = userName
         viewModel.getProfileDetails()
         return view
     }

@@ -5,6 +5,9 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
 import android.os.SystemClock
@@ -13,10 +16,10 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
+import com.app.chefbook.Model.AdapterModel.PostInitiator
 import com.app.chefbook.R
-import com.app.chefbook.UI.PostInitiatorFragment.PostInitiatorFragment
+import com.app.chefbook.Utilities.PostList
+import com.app.chefbook.Utilities.Utility
 import com.otaliastudios.cameraview.CameraListener
 import com.otaliastudios.cameraview.PictureResult
 import com.otaliastudios.cameraview.VideoResult
@@ -57,7 +60,10 @@ class CameraFragment : Fragment() {
         btnCamera.setOnLongClickListener {
 
             Log.d("TESTTT2", "LONG")
-            val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES),"/video.mp4")
+            val file = File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES),
+                "/video.mp4"
+            )
             cameraView.mode = Mode.VIDEO
             cameraView.takeVideo(file)
             chronometer.base = SystemClock.elapsedRealtime()
@@ -93,12 +99,26 @@ class CameraFragment : Fragment() {
                 val data = result.data
                 val bitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
                 val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"/image.jpeg")
-                val os = BufferedOutputStream(FileOutputStream(file))
+                val rotatedBitmap = bitmap.rotate(90f)
+
+                PostList.instance?.add(PostInitiator(Uri.fromFile(file),
+                    isImage = true,
+                    isAddPost = false
+                ))
+
                 activity?.runOnUiThread {
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
+                    val os = BufferedOutputStream(FileOutputStream(file))
+                    rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
                     os.close()
                 }
 
+                activity?.finish()
+
+                /*Thread(Runnable {
+                    val os = BufferedOutputStream(FileOutputStream(file))
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
+                    os.close()
+                }).start()*/
 
             }
 
@@ -168,5 +188,9 @@ class CameraFragment : Fragment() {
 
 }
 
+fun Bitmap.rotate(degrees: Float): Bitmap {
+    val matrix = Matrix().apply { postRotate(degrees) }
+    return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
+}
 
 

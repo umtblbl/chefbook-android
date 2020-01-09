@@ -1,9 +1,6 @@
 package com.app.chefbook.UI.Adapters
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,25 +8,28 @@ import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.app.chefbook.Model.AdapterModel.PostInitiator
 import com.app.chefbook.R
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_post_initiator.view.*
 
-class PostInitiatorAdapter(private var postList: MutableList<PostInitiator>, var onClickListener: RecyclerViewOnClickListener) : RecyclerView.Adapter<PostInitiatorAdapter.PostInitiatorViewHolder>() {
+class PostInitiatorAdapter(
+    private var postList: MutableList<PostInitiator>?,
+    var onClickListener: RecyclerViewOnClickListener
+) : RecyclerView.Adapter<PostInitiatorAdapter.PostInitiatorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostInitiatorViewHolder {
-        val itemPost = LayoutInflater.from(parent.context).inflate(R.layout.item_post_initiator, parent, false)
+        val itemPost =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_post_initiator, parent, false)
         return PostInitiatorViewHolder(itemPost)
     }
 
     override fun getItemCount(): Int {
-        return postList.size
+        return postList?.size!!
     }
 
     override fun onBindViewHolder(holder: PostInitiatorViewHolder, position: Int) {
 
-        val post = postList[position]
+        val post = postList?.get(position)
 
-        holder.setData(post, position, onClickListener)
+        holder.setData(post!!, position, onClickListener)
 
     }
 
@@ -40,14 +40,18 @@ class PostInitiatorAdapter(private var postList: MutableList<PostInitiator>, var
         private var imgPost = item.imgPost
         private var videoPost = item.videoPost
 
-        @SuppressLint("ResourceAsColor")
-        fun setData(post: PostInitiator, position: Int, onClickListener: RecyclerViewOnClickListener) {
+        fun setData(
+            post: PostInitiator,
+            position: Int,
+            onClickListener: RecyclerViewOnClickListener
+        ) {
 
-            if (post.isPost) {
-                if(post.isAddImage)
-                    imgPost.setPadding(80,80,80,80)
+            if (post.isImage) {
+                if (!post.isAddPost)
+                    imgPost.setPadding(0, 0, 0, 0)
                 else
-                    imgPost.setPadding(0,0,0,0)
+                    imgPost.setPadding(80, 80, 80, 80)
+
 
                 videoPost.visibility = View.GONE
                 imgPost.setImageURI(post.postUri)

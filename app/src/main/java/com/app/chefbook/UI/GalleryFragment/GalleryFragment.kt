@@ -2,7 +2,11 @@ package com.app.chefbook.UI.GalleryFragment
 
 
 import android.Manifest
+import android.app.Dialog
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,20 +14,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.chefbook.Model.AdapterModel.PostInitiator
 import com.app.chefbook.Model.AppModel.GalleryPicture
 import com.app.chefbook.R
 import com.app.chefbook.UI.Adapters.GalleryPicturesAdapter
+import com.app.chefbook.Utilities.PostList
 import com.app.chefbook.Utilities.SpaceItemDecoration
 import com.app.chefbook.Utilities.Utility
-import com.bumptech.glide.Glide.init
 import kotlinx.android.synthetic.main.fragment_gallery.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.multi_gallery_listitem.*
+import kotlinx.android.synthetic.main.toolbar_gallery.*
+import java.io.File
 
 /**
  * A simple [Fragment] subclass.
@@ -34,6 +41,8 @@ class GalleryFragment : Fragment() {
 
     private lateinit var adapter: GalleryPicturesAdapter
     private lateinit var pictures: ArrayList<GalleryPicture>
+    var imgGalleryPicture: ImageView? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,14 +82,22 @@ class GalleryFragment : Fragment() {
         rv.layoutManager = layoutManager
         rv.addItemDecoration(SpaceItemDecoration(8))
         pictures = ArrayList(viewModel.getGallerySize(context!!))
-        adapter = GalleryPicturesAdapter(pictures, 10)
+        adapter = GalleryPicturesAdapter(pictures, 7-PostList.instance!!.size)
         rv.adapter = adapter
 
+        loadPictures(25)
 
-        adapter.setOnClickListener { galleryPicture ->
-            showToast(galleryPicture.path)
+        adapter.setOnClickListener {
+            val pictureFullScreenDialog = Dialog(context!!)
+            pictureFullScreenDialog.setContentView(R.layout.dialog_fullscreen_item_viewer)
+            pictureFullScreenDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            pictureFullScreenDialog.setCanceledOnTouchOutside(true)
+            pictureFullScreenDialog.setTitle("Tam Ekran")
+            pictureFullScreenDialog.show()
+
+            imgGalleryPicture = pictureFullScreenDialog.findViewById(R.id.imgGalleryPicture)
+            imgGalleryPicture?.setImageURI(Uri.fromFile(File(it.path)))
         }
-
 
         adapter.setAfterSelectionListener {
             updateToolbar(getSelectedItemsCount())
@@ -95,17 +112,14 @@ class GalleryFragment : Fragment() {
         })
 
         tvDone.setOnClickListener {
-            //super.onBackPressed()
-
+            val selectedList = adapter.getSelectedItems()
+            val postList = PostList.instance!!
+            selectedList.forEach {
+                postList.add(PostInitiator(Uri.parse(it.path), isImage = true, isAddPost = false))
+            }
+            activity!!.finish()
         }
-
-        ivBack.setOnClickListener {
-            //onBackPressed()
-        }
-        loadPictures(25)
-
     }
-
 
     private fun getSelectedItemsCount() = adapter.getSelectedItems().size
 
@@ -151,7 +165,7 @@ class GalleryFragment : Fragment() {
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
             init()
         else {
-            showToast("Permission Required to Fetch Gallery.")
+            showToast("Galeri erişimi verilmedi!")
             //super.onBackPressed()
         }
     }

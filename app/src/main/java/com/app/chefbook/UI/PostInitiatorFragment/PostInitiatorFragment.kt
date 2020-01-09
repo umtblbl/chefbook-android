@@ -1,27 +1,23 @@
 package com.app.chefbook.UI.PostInitiatorFragment
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.chefbook.DI.DataManager.componentFragment
 import com.app.chefbook.Data.DataManager
 import com.app.chefbook.Model.AdapterModel.PostInitiator
 import com.app.chefbook.R
 import com.app.chefbook.UI.Adapters.PostInitiatorAdapter
 import com.app.chefbook.UI.Adapters.RecyclerViewOnClickListener
+import com.app.chefbook.UI.CameraActivity.CameraActivity
+import com.app.chefbook.Utilities.PostList
 import com.app.chefbook.Utilities.Utility
-import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_post_initiator.*
 import java.io.File
 
@@ -33,16 +29,20 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
     lateinit var dataManager: DataManager
     private lateinit var viewModel: PostInitiatorViewModel
     lateinit var postInitiatorAdapter: PostInitiatorAdapter
-    var postList = mutableListOf<PostInitiator>()
-    private val uri: Uri = Uri.parse("android.resource://com.example.peeple/drawable/ic_add_a_photo_white_24dp")
+    private val addImageUri: Uri =
+        Uri.parse("android.resource://com.example.peeple/drawable/ic_add_a_photo_white_24dp")
     lateinit var file: File
-    var isImage: Boolean? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         val view = inflater.inflate(R.layout.fragment_post_initiator, container, false)
         componentFragment.inject(this)
-        viewModel = ViewModelProviders.of(this, ProfileViewModelFactory(dataManager)).get(PostInitiatorViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ProfileViewModelFactory(dataManager))
+            .get(PostInitiatorViewModel::class.java)
 
         return view
     }
@@ -51,8 +51,7 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
         super.onActivityCreated(savedInstanceState)
 
         val spanCount = Utility.calculateNoOfColumns(context!!, 125f)
-        postList.add(PostInitiator(uri, isPost = true, isAddImage = true))
-        postInitiatorAdapter = PostInitiatorAdapter(postList, this)
+        postInitiatorAdapter = PostInitiatorAdapter(PostList.instance, this)
         recViewPostInitiator.layoutManager = GridLayoutManager(context, spanCount)
         recViewPostInitiator.adapter = postInitiatorAdapter
         postInitiatorAdapter.notifyDataSetChanged()
@@ -60,15 +59,14 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
     }
 
     override fun onClick(item: String) {
-        if(postList[item.toInt()].isAddImage) {
-            CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .start(context!!, this)
+        if (PostList.instance!![item.toInt()].isAddPost) {
+            startActivity(Intent(context!!, CameraActivity::class.java))
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 
             val result = CropImage.getActivityResult(data)
@@ -88,8 +86,31 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Log.d("Camera", result.error.toString())
-                Toast.makeText(context, "Kamere hatası!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Kamera hatası!", Toast.LENGTH_SHORT).show()
             }
         }
+    }*/
+
+    override fun onResume() {
+        super.onResume()
+
+        //val result = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "/image.jpeg")
+
+        val uri = PostList.instance
+
+        val postList = PostList.instance!!
+
+        val iterator = postList.iterator()
+
+        while (iterator.hasNext()) {
+            if (iterator.next().isAddPost) { iterator.remove() }
+        }
+
+        if (postList.size < 6) {
+            postList.add(PostInitiator(addImageUri, isImage = true, isAddPost = true))
+        }
+        postInitiatorAdapter.notifyDataSetChanged()
+
+
     }
 }

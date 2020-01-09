@@ -43,7 +43,7 @@ class BaseFragment : Fragment() {
         // return early if no arguments were parsed
         if (toolbarId == defaultInt || navHostId == defaultInt) return
 
-        // setup navigation with toolbar
+        // setup navigation with toolbar_gallery
         val toolbar = requireActivity().findViewById<Toolbar>(toolbarId)
         val navController = requireActivity().findNavController(navHostId)
 

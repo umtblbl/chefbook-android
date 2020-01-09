@@ -20,6 +20,7 @@ import com.app.chefbook.Model.AppModel.GalleryPicture
 import com.app.chefbook.R
 import com.app.chefbook.UI.Adapters.GalleryPicturesAdapter
 import com.app.chefbook.Utilities.SpaceItemDecoration
+import com.app.chefbook.Utilities.Utility
 import com.bumptech.glide.Glide.init
 import kotlinx.android.synthetic.main.fragment_gallery.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -67,7 +68,8 @@ class GalleryFragment : Fragment() {
     private fun init() {
         viewModel = ViewModelProviders.of(this)[GalleryViewModel::class.java]
         updateToolbar(0)
-        val layoutManager = GridLayoutManager(context, 3)
+        val spanCount = Utility.calculateNoOfColumns(context!!, 133f)
+        val layoutManager = GridLayoutManager(context, spanCount)
         rv.layoutManager = layoutManager
         rv.addItemDecoration(SpaceItemDecoration(8))
         pictures = ArrayList(viewModel.getGallerySize(context!!))

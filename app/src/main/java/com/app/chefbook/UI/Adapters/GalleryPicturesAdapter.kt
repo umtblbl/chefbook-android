@@ -10,6 +10,8 @@ import com.app.chefbook.R
 import android.content.Context
 import android.view.LayoutInflater
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.multi_gallery_listitem.view.*
 
 class GalleryPicturesAdapter(private val list: List<GalleryPicture>) : RecyclerView.Adapter<GVH>() {
 
@@ -119,24 +121,23 @@ class GalleryPicturesAdapter(private val list: List<GalleryPicture>) : RecyclerV
 
     override fun onBindViewHolder(holder: GVH, pos: Int) {
         val picture = list[pos]
-        Glide.with(holder.containerView).load(picture.path).into(holder.ivImg)
+        Glide.with(holder.itemView.context).load(picture.path).into(holder.itemView.ivImg)
+        //Picasso.with(holder.itemView.context).load(picture.path).into(holder.itemView.ivImg)
 
-        if (picture.isSelected) {
-            holder.vSelected.visibility = View.VISIBLE
+        if (!picture.isSelected) {
+            holder.itemView.vSelected.visibility = View.GONE
         } else {
-            holder.vSelected.visibility = View.GONE
+            holder.itemView.vSelected.visibility = View.VISIBLE
         }
     }
 
     override fun getItemCount() = list.size
 
-
     fun getSelectedItems() = selectedIndexList.map {
         list[it]
     }
 
-
-    fun removedSelection(): Boolean {
+    private fun removedSelection(): Boolean {
         return if (isSelectionEnabled) {
             selectedIndexList.forEach {
                 list[it].isSelected = false

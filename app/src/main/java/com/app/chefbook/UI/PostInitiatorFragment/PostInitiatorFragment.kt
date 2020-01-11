@@ -91,19 +91,25 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
         }
     }*/
 
+    override fun onStart() {
+        super.onStart()
+
+
+    }
+
     override fun onResume() {
         super.onResume()
 
         //val result = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "/image.jpeg")
 
         val uri = PostList.instance
-
         val postList = PostList.instance!!
-
         val iterator = postList.iterator()
 
         while (iterator.hasNext()) {
-            if (iterator.next().isAddPost) { iterator.remove() }
+            if (iterator.next().isAddPost) {
+                iterator.remove()
+            }
         }
 
         if (postList.size < 6) {

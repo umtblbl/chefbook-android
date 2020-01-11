@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.app.chefbook.Model.AdapterModel.PostInitiator
 import com.app.chefbook.R
+import com.app.chefbook.Utilities.PostList
 import kotlinx.android.synthetic.main.item_post_initiator.view.*
 
 class PostInitiatorAdapter(
@@ -16,9 +17,14 @@ class PostInitiatorAdapter(
 ) : RecyclerView.Adapter<PostInitiatorAdapter.PostInitiatorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostInitiatorViewHolder {
-        val itemPost =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_post_initiator, parent, false)
-        return PostInitiatorViewHolder(itemPost)
+        val itemPost = LayoutInflater.from(parent.context).inflate(R.layout.item_post_initiator, parent, false)
+        val holder = PostInitiatorViewHolder(itemPost)
+        itemPost.imgDeletePost.setOnClickListener {
+            PostList.instance!!.removeAt(holder.adapterPosition)
+            notifyDataSetChanged()
+        }
+
+        return holder
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +45,7 @@ class PostInitiatorAdapter(
 
         private var imgPost = item.imgPost
         private var videoPost = item.videoPost
+        private var deletePost = item.imgDeletePost
 
         fun setData(
             post: PostInitiator,
@@ -47,11 +54,15 @@ class PostInitiatorAdapter(
         ) {
 
             if (post.isImage) {
-                if (!post.isAddPost)
+                if (!post.isAddPost) {
                     imgPost.setPadding(0, 0, 0, 0)
-                else
-                    imgPost.setPadding(80, 80, 80, 80)
+                    deletePost.visibility = View.VISIBLE
 
+                }
+                else {
+                    imgPost.setPadding(80, 80, 80, 80)
+                    deletePost.visibility = View.GONE
+                }
 
                 videoPost.visibility = View.GONE
                 imgPost.setImageURI(post.postUri)
@@ -61,7 +72,6 @@ class PostInitiatorAdapter(
                 videoPost.setVideoURI(post.postUri)
                 videoPost.visibility = View.VISIBLE
             }
-
             itemPost?.setOnClickListener { onClickListener.onClick(position.toString()) }
         }
     }

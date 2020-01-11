@@ -8,9 +8,11 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewProfilePost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="@dimen/cardView_post_radius"
+        android:elevation="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

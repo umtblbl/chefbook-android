@@ -27,6 +27,8 @@ import com.app.chefbook.UI.Adapters.GalleryPicturesAdapter
 import com.app.chefbook.Utilities.PostList
 import com.app.chefbook.Utilities.SpaceItemDecoration
 import com.app.chefbook.Utilities.Utility
+import com.davemorrissey.labs.subscaleview.ImageSource
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import kotlinx.android.synthetic.main.fragment_gallery.*
 import kotlinx.android.synthetic.main.multi_gallery_listitem.*
 import kotlinx.android.synthetic.main.toolbar_gallery.*
@@ -41,7 +43,7 @@ class GalleryFragment : Fragment() {
 
     private lateinit var adapter: GalleryPicturesAdapter
     private lateinit var pictures: ArrayList<GalleryPicture>
-    var imgGalleryPicture: ImageView? = null
+    var imgGalleryPicture: SubsamplingScaleImageView? = null
 
 
     override fun onCreateView(
@@ -96,7 +98,7 @@ class GalleryFragment : Fragment() {
             pictureFullScreenDialog.show()
 
             imgGalleryPicture = pictureFullScreenDialog.findViewById(R.id.imgGalleryPicture)
-            imgGalleryPicture?.setImageURI(Uri.fromFile(File(it.path)))
+            imgGalleryPicture?.setImage(ImageSource.uri(Uri.fromFile(File(it.path))))
         }
 
         adapter.setAfterSelectionListener {

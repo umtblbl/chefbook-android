@@ -28,7 +28,6 @@ class ProfilePostAdapter(private var profile: Profile, var onClickListener: Recy
         holder.setData(post, onClickListener)
     }
 
-
     class ProfileViewHolder(var itemPost: View?) : RecyclerView.ViewHolder(itemPost!!) {
 
         var item = itemView as RelativeLayout
@@ -39,6 +38,7 @@ class ProfilePostAdapter(private var profile: Profile, var onClickListener: Recy
         private var txtRate = item.txtPostRate
         private var txtLikeCount = item.txtLikeCount
         private var txtCommentCount = item.txtCommentCount
+        private var cardViewProfilePost = item.cardViewProfilePost
 
         fun setData(post: Profile.ProfilePost, onClickListener: RecyclerViewOnClickListener) {
 
@@ -48,7 +48,6 @@ class ProfilePostAdapter(private var profile: Profile, var onClickListener: Recy
             txtLikeCount.text = post.likeCount
             txtCommentCount.text = post.commentCount
             Picasso.with(item.context).load(post.pictureUrl).into(imgPicture)
-
             itemPost?.setOnClickListener { onClickListener.onClick(post.id) }
         }
     }

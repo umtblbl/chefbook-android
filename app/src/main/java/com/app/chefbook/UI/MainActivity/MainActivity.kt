@@ -1,5 +1,6 @@
 package com.app.chefbook.UI.MainActivity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -14,26 +15,47 @@ import androidx.viewpager.widget.ViewPager
 import com.app.chefbook.DI.DataManager.componentActivity
 import com.app.chefbook.Data.IDataManager
 import com.app.chefbook.R
+import com.app.chefbook.UI.CameraActivity.CameraActivity
 import com.app.chefbook.UI.Utility.BaseFragment
+import com.app.chefbook.Utilities.PostList
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import javax.inject.Inject
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, BottomNavigationView.OnNavigationItemReselectedListener,
+class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener,
+    BottomNavigationView.OnNavigationItemReselectedListener,
     BottomNavigationView.OnNavigationItemSelectedListener {
 
 
     private val backStack = Stack<Int>()
 
     private val fragments = listOf(
-        BaseFragment.newInstance(R.layout.content_flow_base, R.id.toolbar_flow_content, R.id.nav_container_flow),
-        BaseFragment.newInstance(R.layout.content_discovery_base, R.id.toolbar_discovery_content, R.id.nav_container_discovery),
-        BaseFragment.newInstance(R.layout.content_addpost_base, R.id.toolbar_addPost_content, R.id.nav_container_addPost),
-        BaseFragment.newInstance(R.layout.content_profile_base, R.id.toolbar_profile_content, R.id.nav_container_profile))
+        BaseFragment.newInstance(
+            R.layout.content_flow_base,
+            R.id.toolbar_flow_content,
+            R.id.nav_container_flow
+        ),
+        BaseFragment.newInstance(
+            R.layout.content_discovery_base,
+            R.id.toolbar_discovery_content,
+            R.id.nav_container_discovery
+        ),
+        BaseFragment.newInstance(
+            R.layout.content_addpost_base,
+            R.id.toolbar_addPost_content,
+            R.id.nav_container_addPost
+        ),
+        BaseFragment.newInstance(
+            R.layout.content_profile_base,
+            R.id.toolbar_profile_content,
+            R.id.nav_container_profile
+        )
+    )
 
-    private val indexToPage = mapOf(0 to R.id.flow, 1 to R.id.discovery, 2 to R.id.addPost , 3 to R.id.profile)
+    private val indexToPage =
+        mapOf(0 to R.id.flow, 1 to R.id.discovery, 2 to R.id.addPost, 3 to R.id.profile)
 
     @Inject
     lateinit var dataManager: IDataManager
@@ -43,7 +65,8 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, Bottom
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         componentActivity.inject(this)
-        viewModel = ViewModelProviders.of(this, MainViewModelFactory(dataManager)).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, MainViewModelFactory(dataManager))
+            .get(MainViewModel::class.java)
 
         //switchFragment(UserSearchFragment())
         //bottom_navigation?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
@@ -69,11 +92,11 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, Bottom
         if (backStack.empty()) backStack.push(0)
     }
 
-    private fun setupBottomNavMenu(navController: NavController) {
+    /*private fun setupBottomNavMenu(navController: NavController) {
         bottom_navigation?.let {
             NavigationUI.setupWithNavController(it, navController)
         }
-    }
+    }*/
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val navController = Navigation.findNavController(this, R.id.bottom_navigation)
@@ -81,9 +104,9 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, Bottom
         return navigated || super.onOptionsItemSelected(item)
     }
 
-    override fun onPageScrollStateChanged(state: Int) { }
+    override fun onPageScrollStateChanged(state: Int) {}
 
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) { }
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
     override fun onPageSelected(position: Int) {
         val itemId = indexToPage[position] ?: R.id.home
@@ -127,6 +150,9 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener, Bottom
     private fun setItem(position: Int) {
         main_viewPager.currentItem = position
         backStack.push(position)
+        if (position == 2 && PostList.instance!!.size == 1) {
+            startActivity(Intent(this, CameraActivity::class.java))
+        }
     }
 
     inner class ViewPagerAdapter : FragmentPagerAdapter(supportFragmentManager) {

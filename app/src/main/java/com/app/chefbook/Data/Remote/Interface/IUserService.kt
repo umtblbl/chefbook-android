@@ -1,14 +1,13 @@
 package com.app.chefbook.Data.Remote.Interface
 
 import com.app.chefbook.Data.Remote.ServiceCallBack
-import com.app.chefbook.Model.ServiceModel.RequestModel.ChangePassword
-import com.app.chefbook.Model.ServiceModel.RequestModel.ChangeProfile
-import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
-import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
-import com.app.chefbook.Model.ServiceModel.ResponseModel.Profile
-import com.app.chefbook.Model.ServiceModel.ResponseModel.ProfileDetails
+import com.app.chefbook.model.serviceModel.requestModel.ChangePassword
+import com.app.chefbook.model.serviceModel.requestModel.ChangeProfile
+import com.app.chefbook.model.serviceModel.requestModel.LoginUser
+import com.app.chefbook.model.serviceModel.requestModel.RegisterUser
+import com.app.chefbook.model.serviceModel.responseModel.Profile
+import com.app.chefbook.model.serviceModel.responseModel.ProfileDetails
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 
 interface IUserService {
     fun registerUser(registerUser: RegisterUser, callBack: ServiceCallBack<String>)

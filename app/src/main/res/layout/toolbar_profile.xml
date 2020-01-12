@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="5dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="profileViewModel"
+            type="com.app.chefbook.ui.profileFragment.ProfileViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/txtUserId"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:layout_centerVertical="true"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginStart="7dp"/>
+        android:orientation="horizontal"
+        android:padding="5dp">
 
-    <ImageView
-        android:id="@+id/imgSettings"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/ic_settings_white_24dp"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
-        android:layout_alignParentEnd="true"
-        style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
+        <TextView
+            android:id="@+id/txtUserId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="7dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@{profileViewModel.profile.userName}"/>
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/imgSettings"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_settings_white_24dp" />
+    </RelativeLayout>
+</layout>

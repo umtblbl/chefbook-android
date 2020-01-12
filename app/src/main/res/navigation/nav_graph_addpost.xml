@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/postInitiatorFragment"
-        android:name="com.app.chefbook.UI.PostInitiatorFragment.PostInitiatorFragment"
+        android:name="com.app.chefbook.ui.PostInitiatorFragment.PostInitiatorFragment"
         android:label="fragment_post_initiator"
         tools:layout="@layout/fragment_post_initiator" />
 </navigation>

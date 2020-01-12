@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/flowFragment"
-        android:name="com.app.chefbook.UI.FlowFragment.FlowFragment"
+        android:name="com.app.chefbook.ui.FlowFragment.FlowFragment"
         android:label="fragment_flow"
         tools:layout="@layout/fragment_flow" />
 </navigation>

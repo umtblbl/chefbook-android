@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context="com.app.chefbook.UI.PostInitiatorFragment.PostInitiatorFragment">
+    tools:context="com.app.chefbook.ui.PostInitiatorFragment.PostInitiatorFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recViewPostInitiator"

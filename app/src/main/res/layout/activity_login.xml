@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="VectorDrawableCompat"
-        tools:context=".UI.LoginActivity.LoginActivity">
+        tools:context=".ui.LoginActivity.LoginActivity">
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/bgHeader"

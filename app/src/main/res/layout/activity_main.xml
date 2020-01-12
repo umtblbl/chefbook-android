@@ -9,7 +9,7 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <com.app.chefbook.Utilities.NonSwipingViewPager
+    <com.app.chefbook.utility.NonSwipingViewPager
         android:id="@+id/main_viewPager"
         android:layout_weight="1"
         android:layout_width="match_parent"

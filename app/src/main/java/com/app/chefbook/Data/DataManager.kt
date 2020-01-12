@@ -4,14 +4,13 @@ import com.app.chefbook.Data.Preferences.IPrefHelper
 import com.app.chefbook.Data.Preferences.PrefHelper
 import com.app.chefbook.Data.Remote.ApiHelper.IApiHelper
 import com.app.chefbook.Data.Remote.ServiceCallBack
-import com.app.chefbook.Model.ServiceModel.RequestModel.ChangePassword
-import com.app.chefbook.Model.ServiceModel.RequestModel.ChangeProfile
-import com.app.chefbook.Model.ServiceModel.RequestModel.LoginUser
-import com.app.chefbook.Model.ServiceModel.RequestModel.RegisterUser
-import com.app.chefbook.Model.ServiceModel.ResponseModel.Profile
-import com.app.chefbook.Model.ServiceModel.ResponseModel.ProfileDetails
+import com.app.chefbook.model.serviceModel.requestModel.ChangePassword
+import com.app.chefbook.model.serviceModel.requestModel.ChangeProfile
+import com.app.chefbook.model.serviceModel.requestModel.LoginUser
+import com.app.chefbook.model.serviceModel.requestModel.RegisterUser
+import com.app.chefbook.model.serviceModel.responseModel.Profile
+import com.app.chefbook.model.serviceModel.responseModel.ProfileDetails
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import javax.inject.Inject
 
 class DataManager @Inject constructor(apiHelper: IApiHelper, prefHelper: PrefHelper) : IDataManager {

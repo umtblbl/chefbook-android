@@ -21,18 +21,18 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
-        <activity android:name=".UI.CameraActivity.CameraActivity">
+        <activity android:name=".ui.CameraActivity.CameraActivity">
 
         </activity>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".UI.LoginActivity.LoginActivity" />
+        <activity android:name=".ui.LoginActivity.LoginActivity" />
         <activity
-            android:name=".UI.RegisterActivity.RegisterActivity"
+            android:name=".ui.RegisterActivity.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullScreen" />
-        <activity android:name=".UI.MainActivity.MainActivity">
+        <activity android:name=".ui.MainActivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

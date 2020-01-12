@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.app.chefbook.UI.ProfileFragment.ProfileFragment"
+        android:name="com.app.chefbook.ui.profileFragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.app.chefbook.UI.SettingsFragment.SettingsFragment"
+        android:name="com.app.chefbook.ui.SettingsFragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <argument

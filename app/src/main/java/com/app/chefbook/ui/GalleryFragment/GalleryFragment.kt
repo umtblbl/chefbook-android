@@ -19,10 +19,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.app.chefbook.model.AdapterModel.PostInitiator
+import com.app.chefbook.model.AdapterModel.PostInitiatorMedia
 import com.app.chefbook.model.AppModel.GalleryPicture
 import com.app.chefbook.R
-import com.app.chefbook.ui.adapters.GalleryPicturesAdapter
+import com.app.chefbook.ui.adapters.galleryPicture.GalleryPicturesAdapter
 import com.app.chefbook.utility.PostList
 import com.app.chefbook.utility.SpaceItemDecoration
 import com.app.chefbook.utility.Utility
@@ -115,7 +115,7 @@ class GalleryFragment : Fragment() {
             val selectedList = adapter.getSelectedItems()
             val postList = PostList.instance!!
             selectedList.forEach {
-                postList.add(PostInitiator(Uri.parse(it.path), isImage = true, isAddPost = false))
+                postList.add(PostInitiatorMedia(Uri.parse(it.path), isImage = true, isAddPost = false))
             }
             activity!!.finish()
         }

@@ -2,10 +2,10 @@ package com.app.chefbook.DI.DataManager
 
 import com.app.chefbook.ui.LoginActivity.LoginActivity
 import com.app.chefbook.ui.MainActivity.MainActivity
-import com.app.chefbook.ui.PostInitiatorFragment.PostInitiatorFragment
+import com.app.chefbook.ui.postInitiatorFragment.PostInitiatorFragment
 import com.app.chefbook.ui.profileFragment.ProfileFragment
 import com.app.chefbook.ui.RegisterActivity.RegisterActivity
-import com.app.chefbook.ui.SettingsFragment.SettingsFragment
+import com.app.chefbook.ui.settingsFragment.SettingsFragment
 import dagger.Component
 import javax.inject.Singleton
 

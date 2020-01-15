@@ -1,15 +1,15 @@
 package com.app.chefbook.utility
 
-import com.app.chefbook.model.AdapterModel.PostInitiator
+import com.app.chefbook.model.AdapterModel.PostInitiatorMedia
 
 object PostList {
-    private var postList: MutableList<PostInitiator>? = null
+    private var postListMedia: MutableList<PostInitiatorMedia>? = null
 
-    val instance: MutableList<PostInitiator>?
+    val instance: MutableList<PostInitiatorMedia>?
         get() {
-            if (postList == null) {
-                postList = mutableListOf()
+            if (postListMedia == null) {
+                postListMedia = mutableListOf()
             }
-            return postList
+            return postListMedia
         }
 }

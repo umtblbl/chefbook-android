@@ -71,12 +71,11 @@ class LoginActivity : AppCompatActivity() {
 
             when (it) {
                 true -> {
-
                     val intent = Intent(this, MainActivity::class.java)
 
                     SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
                         .setTitleText("Giriş Yapıldı!")
-                        .setConfirmButton("OK") { startActivity(intent) }
+                        .setConfirmButton("Devam et") { startActivity(intent) }
                         .show()
                 }
                 false -> {
@@ -90,4 +89,5 @@ class LoginActivity : AppCompatActivity() {
         })
 
     }
+
 }

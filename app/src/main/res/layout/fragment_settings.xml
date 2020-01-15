@@ -1,150 +1,162 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.app.chefbook.ui.SettingsFragment.SettingsFragment">
+    tools:context="com.app.chefbook.ui.settingsFragment.SettingsFragment">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="settingsViewModel"
+            type="com.app.chefbook.ui.settingsFragment.SettingsViewModel" />
+    </data>
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_UserName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rect1"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="15dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimaryDark"
-            app:counterEnabled="true"
-            app:counterMaxLength="16"
-            app:counterTextAppearance="@style/CounterStyle">
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/changeUserName"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_UserName"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:hint="@string/userName"
-                android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                tools:ignore="SmallSp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rect1"
+                android:paddingStart="10dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:counterEnabled="true"
+                app:counterMaxLength="16"
+                app:counterTextAppearance="@style/CounterStyle">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/changeUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:hint="@string/userName"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:text="@{settingsViewModel.profileDetails.userName}"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_FullName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rect1"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="15dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimaryDark"
-            app:counterEnabled="true"
-            app:counterMaxLength="50"
-            app:counterTextAppearance="@style/CounterStyle">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/changeFullName"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_FullName"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:hint="@string/fullname"
-                android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                tools:ignore="SmallSp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rect1"
+                android:paddingStart="10dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/changeFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:hint="@string/fullname"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp"
+                    android:text="@{settingsViewModel.profileDetails.nameSurName}"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_Biography"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rect1"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="15dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimaryDark"
-            app:counterEnabled="true"
-            app:counterMaxLength="150"
-            app:counterTextAppearance="@style/CounterStyle">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/changeBiography"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_Biography"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:hint="@string/biography"
-                android:maxLines="5"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                tools:ignore="SmallSp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rect1"
+                android:paddingStart="10dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:counterEnabled="true"
+                app:counterMaxLength="150"
+                app:counterTextAppearance="@style/CounterStyle">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/changeBiography"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:hint="@string/biography"
+                    android:maxLines="5"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp"
+                    android:text="@{settingsViewModel.profileDetails.biography}"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rect1"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="15dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimaryDark"
-            app:counterEnabled="true"
-            app:counterMaxLength="50"
-            app:counterTextAppearance="@style/CounterStyle">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/changeEmail"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_Email"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:hint="@string/email"
-                android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                tools:ignore="SmallSp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rect1"
+                android:paddingStart="10dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/changeEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:hint="@string/email"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp"
+                    android:text="@{settingsViewModel.profileDetails.mail}"/>
 
-        <Button
-            android:id="@+id/btnSaveSettings"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/bt_uisquare"
-            android:text="@string/save"
-            android:textColor="@color/colorWhite" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnPasswordChange"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="7dp"
-            android:background="@drawable/transparent_button_blue_purple"
-            android:gravity="start|center"
-            android:paddingStart="30dp"
-            android:text="Şifre Değiştir"
-            tools:ignore="RtlSymmetry" />
+            <Button
+                android:id="@+id/btnSaveSettings"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bt_uisquare"
+                android:text="@string/save"
+                android:textColor="@color/colorWhite" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnPasswordChange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="7dp"
+                android:background="@drawable/transparent_button_blue_purple"
+                android:gravity="start|center"
+                android:paddingStart="30dp"
+                android:text="@string/change_password"
+                tools:ignore="RtlSymmetry" />
 
-</ScrollView>
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

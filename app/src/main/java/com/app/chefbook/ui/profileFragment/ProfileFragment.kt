@@ -22,9 +22,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.app.chefbook.DI.DataManager.componentFragment
 import com.app.chefbook.Data.DataManager
 import com.app.chefbook.R
-import com.app.chefbook.ui.adapters.ProfilePostAdapter
 import com.app.chefbook.ui.adapters.RecyclerViewOnClickListener
-import com.app.chefbook.utility.getInflateLayout
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import okhttp3.MediaType
@@ -34,6 +32,7 @@ import java.io.File
 import javax.inject.Inject
 import com.app.chefbook.databinding.FragmentProfileBinding
 import com.app.chefbook.databinding.ToolbarProfileBinding
+import com.app.chefbook.ui.adapters.profilePost.ProfilePostAdapter
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
@@ -50,17 +49,10 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
     private lateinit var profileBinding: FragmentProfileBinding
     private lateinit var toolbarBinding: ToolbarProfileBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        profileBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        profileBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         componentFragment.inject(this)
-        viewModel = ViewModelProviders.of(this, ProfileViewModelFactory(dataManager))
-            .get(ProfileViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ProfileViewModelFactory(dataManager)).get(ProfileViewModel::class.java)
 
         initBindingObserver()
         initToolbar()
@@ -133,8 +125,7 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
 
         }
 
-        loadingDialog =
-            SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
+        loadingDialog = SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -162,7 +153,6 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
                 Log.d("Camera", result.error.toString())
             }
         }
-
     }
 
     private fun initToolbar() {
@@ -173,7 +163,8 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
 
         toolbarBinding = ToolbarProfileBinding.inflate(LayoutInflater.from(context))
 
-        imgToolbarSettings = toolbarBinding?.root?.findViewById(R.id.imgSettings)
+        imgToolbarSettings = toolbarBinding.root.findViewById(R.id.imgSettings)
+
         toolbarBinding.run {
             profileViewModel = viewModel
             lifecycleOwner = this@ProfileFragment

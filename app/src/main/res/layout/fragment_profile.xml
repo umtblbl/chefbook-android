@@ -2,7 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.app.chefbook.UI.ProfileFragment.ProfileFragment">
+
     <data>
+
         <variable
             name="profileViewModel"
             type="com.app.chefbook.ui.profileFragment.ProfileViewModel" />
@@ -76,7 +78,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="Paylaşım"
+                                    android:text="@string/sharing"
                                     android:textSize="15sp"
                                     android:textStyle="bold" />
 
@@ -104,7 +106,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="Takipçi"
+                                    android:text="@string/followers"
                                     android:textSize="15sp"
                                     android:textStyle="bold" />
 
@@ -208,9 +210,9 @@
                     android:id="@+id/recViewPost"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clipToPadding="false"
                     android:profile="@{profileViewModel.profile}"
-                    tools:listitem="@layout/item_profile_post"
-                    android:clipToPadding="false"/>
+                    tools:listitem="@layout/item_profile_post" />
 
             </RelativeLayout>
 

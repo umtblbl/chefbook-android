@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.app.chefbook.ui.SettingsFragment.SettingsFragment"
+        android:name="com.app.chefbook.ui.settingsFragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <argument

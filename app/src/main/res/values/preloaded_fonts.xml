@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/candal</item>
+        <item>@font/convergence</item>
+        <item>@font/lemon</item>
         <item>@font/montserrat</item>
     </array>
 </resources>

@@ -15,7 +15,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import com.app.chefbook.model.AdapterModel.PostInitiator
+import com.app.chefbook.model.AdapterModel.PostInitiatorMedia
 import com.app.chefbook.R
 import com.app.chefbook.utility.PostList
 import com.otaliastudios.cameraview.CameraListener
@@ -99,7 +99,7 @@ class CameraFragment : Fragment() {
                 val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"/image.jpeg")
                 val rotatedBitmap = bitmap.rotate(90f)
 
-                PostList.instance?.add(PostInitiator(Uri.fromFile(file),
+                PostList.instance?.add(PostInitiatorMedia(Uri.fromFile(file),
                     isImage = true,
                     isAddPost = false
                 ))

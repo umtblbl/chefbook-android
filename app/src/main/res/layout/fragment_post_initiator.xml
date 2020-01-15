@@ -1,17 +1,1040 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollViewAddPost"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context="com.app.chefbook.ui.PostInitiatorFragment.PostInitiatorFragment">
+    tools:context="com.app.chefbook.ui.postInitiatorFragment.PostInitiatorFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recViewPostInitiator"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recViewPostMedia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="7dp" />
+
+        <TextView
+            android:id="@+id/txtMediaNotFound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/suez_one"
+            android:text="@string/media_not_found"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="100dp"
+            android:background="@color/colorWhite" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rect1"
+            android:orientation="vertical"
+            android:paddingBottom="7dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="7dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle"
+                tools:ignore="RtlSymmetry">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/title"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutDescripton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="150"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/description"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="100dp"
+            android:background="@color/colorWhite" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="60dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:fontFamily="@font/suez_one"
+                android:text="Malzemeleri belirle"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:src="@drawable/menu_icon" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rect1"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_one"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveIngredientsSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsSecond"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsSecond"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_second"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsThird"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveIngredientsThird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsThird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsThird"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_third"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsFourth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveIngredientsFourth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsFourth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsFourth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_fourth"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsFifth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveIngredientsFifth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsFifth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsFifth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_fifth"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsSixth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveIngredientsSixth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsSixth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsSixth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_sixth"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsSeventh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveIngredientsSeventh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsSeventh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsSeventh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_seventh"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsEight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveIngredientsEight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsEight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsEight"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_eight"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsNinth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveIngredientsNinth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsNinth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsNinth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_ninth"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnIngredientsTenth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveIngredientsTenth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutIngredientsTenth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postIngredientsTenth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/ingredient_tenth"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:orientation="horizontal"
+            android:id="@+id/lnAddIngredients">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/imgAddIngredients"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_add" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/txtIngredientsCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="1"
+                android:textColor="@color/colorWhite"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:text="/10"
+                android:textColor="@color/colorWhite"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="100dp"
+            android:background="@color/colorWhite" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:fontFamily="@font/suez_one"
+                android:text="Nasıl yapıldığını anlat"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:src="@drawable/cooking_3_soft_black" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnStepOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rect1"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutStepOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postStepOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/step_one"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnStepSecond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveStepSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutStepSecond"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postStepSecond"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/step_second"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnStepThird"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveStepThird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutStepThird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postStepThird"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/step_third"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnStepFourth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveStepFourth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutStepFourth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postStepFourth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/step_fourth"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnStepFifth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rect1"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgRemoveStepFifth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_remove_white_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutStepFifth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/CounterStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postStepFifth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorWhite"
+                    android:hint="@string/step_fifth"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:ignore="SmallSp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:id="@+id/lnAddStep">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewAddStep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/imgAddStep"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_white_black_click"
+                    android:src="@drawable/ic_add" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/txtStepCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="1"
+                android:textColor="@color/colorWhite"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:text="/5"
+                android:textColor="@color/colorWhite"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

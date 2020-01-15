@@ -15,8 +15,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.app.chefbook.DI.DataManager.componentFragment
-import com.app.chefbook.Data.DataManager
+import com.app.chefbook.di.DataManager.componentFragment
+import com.app.chefbook.data.DataManager
 import com.app.chefbook.model.serviceModel.requestModel.ChangePassword
 import com.app.chefbook.model.serviceModel.requestModel.ChangeProfile
 import com.app.chefbook.R

@@ -2,7 +2,7 @@ package com.app.chefbook.ui.RegisterActivity
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.app.chefbook.Data.IDataManager
+import com.app.chefbook.data.IDataManager
 
 @Suppress("UNCHECKED_CAST")
 class RegisterViewModelFactory (val dataManager: IDataManager): ViewModelProvider.NewInstanceFactory() {

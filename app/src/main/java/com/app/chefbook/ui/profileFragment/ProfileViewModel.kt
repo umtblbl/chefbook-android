@@ -3,8 +3,8 @@ package com.app.chefbook.ui.profileFragment
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.app.chefbook.Data.DataManager
-import com.app.chefbook.Data.Remote.ServiceCallBack
+import com.app.chefbook.data.DataManager
+import com.app.chefbook.data.remote.ServiceCallBack
 import com.app.chefbook.model.serviceModel.responseModel.Profile
 import okhttp3.MultipartBody
 
@@ -25,7 +25,6 @@ class ProfileViewModel (val dataManager: DataManager) : ViewModel() {
             }
         })
     }
-    fun getProfilee() = profile
 
     fun uploadProfilePicture(profilePicture: MultipartBody.Part) {
         dataManager.uploadProfilePicture(profilePicture, object : ServiceCallBack<String> {

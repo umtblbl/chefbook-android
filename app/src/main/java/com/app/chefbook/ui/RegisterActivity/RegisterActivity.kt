@@ -7,8 +7,8 @@ import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.app.chefbook.DI.DataManager.componentActivity
-import com.app.chefbook.Data.IDataManager
+import com.app.chefbook.di.DataManager.componentActivity
+import com.app.chefbook.data.IDataManager
 import com.app.chefbook.model.serviceModel.requestModel.RegisterUser
 import com.app.chefbook.R
 import com.app.chefbook.ui.LoginActivity.LoginActivity

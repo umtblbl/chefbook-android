@@ -1,7 +1,6 @@
 package com.app.chefbook.ui.profileFragment
 
 import android.app.Activity.RESULT_OK
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -19,8 +17,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.app.chefbook.DI.DataManager.componentFragment
-import com.app.chefbook.Data.DataManager
+import com.app.chefbook.di.DataManager.componentFragment
+import com.app.chefbook.data.DataManager
 import com.app.chefbook.R
 import com.app.chefbook.ui.adapters.RecyclerViewOnClickListener
 import com.theartofdev.edmodo.cropper.CropImage

@@ -11,8 +11,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.viewpager.widget.ViewPager
 
-import com.app.chefbook.DI.DataManager.componentActivity
-import com.app.chefbook.Data.IDataManager
+import com.app.chefbook.di.DataManager.componentActivity
+import com.app.chefbook.data.IDataManager
 import com.app.chefbook.R
 import com.app.chefbook.ui.CameraActivity.CameraActivity
 import com.app.chefbook.ui.utility.BaseFragment

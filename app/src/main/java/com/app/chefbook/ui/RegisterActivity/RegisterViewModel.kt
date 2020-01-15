@@ -2,8 +2,8 @@ package com.app.chefbook.ui.RegisterActivity
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.app.chefbook.Data.IDataManager
-import com.app.chefbook.Data.Remote.ServiceCallBack
+import com.app.chefbook.data.IDataManager
+import com.app.chefbook.data.remote.ServiceCallBack
 import com.app.chefbook.model.serviceModel.requestModel.RegisterUser
 
 class RegisterViewModel (var dataManager: IDataManager) : ViewModel() {

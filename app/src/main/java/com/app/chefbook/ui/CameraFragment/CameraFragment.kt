@@ -122,7 +122,6 @@ class CameraFragment : Fragment() {
 
             override fun onVideoTaken(result: VideoResult) {
                 super.onVideoTaken(result)
-                Log.d("VIDEOZEL", "onVideoTaken")
                 val data = result.file
             }
         })

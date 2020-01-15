@@ -2,11 +2,12 @@ package com.app.chefbook.ui.postInitiatorFragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.app.chefbook.Data.DataManager
+import com.app.chefbook.data.DataManager
+import com.app.chefbook.data.remote.service.PostService
 
 @Suppress("UNCHECKED_CAST")
-class PostInitiatorViewModelFactory (val dataManager: DataManager) : ViewModelProvider.NewInstanceFactory() {
+class PostInitiatorViewModelFactory(val postService: PostService) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return PostInitiatorViewModel(dataManager) as T
+        return PostInitiatorViewModel(postService) as T
     }
 }

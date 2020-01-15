@@ -9,15 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.RemoteViewsService
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.app.chefbook.DI.DataManager.componentFragment
-import com.app.chefbook.Data.DataManager
+import com.app.chefbook.di.DataManager.componentFragment
+import com.app.chefbook.data.DataManager
 import com.app.chefbook.model.AdapterModel.PostInitiatorMedia
 import com.app.chefbook.R
+import com.app.chefbook.data.remote.service.PostService
+import com.app.chefbook.model.serviceModel.requestModel.AddPost
 import com.app.chefbook.ui.adapters.postInitiatorMedia.PostInitiatorMediaAdapter
 import com.app.chefbook.ui.adapters.RecyclerViewOnClickListener
 import com.app.chefbook.ui.CameraActivity.CameraActivity
@@ -25,18 +29,22 @@ import com.app.chefbook.utility.PostList
 import com.app.chefbook.utility.Utility
 import com.app.chefbook.utility.getInflateLayout
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_post_initiator.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 import javax.inject.Inject
 
 class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
 
     @Inject
-    lateinit var dataManager: DataManager
+    lateinit var postService: PostService
     private lateinit var viewModel: PostInitiatorViewModel
     lateinit var postInitiatorMediaAdapter: PostInitiatorMediaAdapter
-    private val addImageUri: Uri =
-        Uri.parse("android.resource://com.example.peeple/drawable/ic_add_a_photo_white_24dp")
+    private val addImageUri: Uri = Uri.parse("android.resource://com.example.peeple/drawable/ic_add_a_photo_white_24dp")
     var toolbar: Toolbar? = null
     private var toolbarPostInitiator: View? = null
     private var imgToolbarSend: ImageView? = null
@@ -44,22 +52,17 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
     private lateinit var lnStepMap: MutableMap<Int, RelativeLayout>
     private lateinit var postIngredientsMap: MutableMap<Int, TextInputEditText>
     private lateinit var postStepMap: MutableMap<Int, TextInputEditText>
+    private lateinit var lyIngredientsMap: MutableMap<Int, TextInputLayout>
+    private lateinit var lyStepMap: MutableMap<Int, TextInputLayout>
+    private lateinit var loadingDialog: SweetAlertDialog
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_post_initiator, container, false)
         componentFragment.inject(this)
-        viewModel = ViewModelProviders.of(this, PostInitiatorViewModelFactory(dataManager))
-            .get(PostInitiatorViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, PostInitiatorViewModelFactory(postService)).get(PostInitiatorViewModel::class.java)
 
         initToolbar()
-
-
 
         return view
     }
@@ -72,38 +75,38 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
         recViewPostMedia.layoutManager = GridLayoutManager(context, spanCount)
         recViewPostMedia.adapter = postInitiatorMediaAdapter
         postInitiatorMediaAdapter.notifyDataSetChanged()
+        loadingDialog = SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
         initMap()
-
 
         imgToolbarSend?.setOnClickListener {
             Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
 
-            var changeState = true
+            if (checkLayout()) {
+                Toast.makeText(context, "SendTrue", Toast.LENGTH_SHORT).show()
 
-            if (PostList.instance?.size!! < 2) {
-                txtMediaNotFound.visibility = View.VISIBLE
-                var changeState = true
-            } else {
-                txtMediaNotFound.visibility = View.GONE
+                loadingDialog.show()
 
-                if (postTitle.length() < 10 || postTitle.length() > 50) {
-                    layoutTitle.error = "En az 10, en fazla 50 karakter olmalı"
-                    changeState = false
-                }
-                if (postDescription.length() < 10 || postDescription.length() > 150) {
-                    layoutDescripton.error = "En az 10, en fazla 150 karakter olmalı"
-                    changeState = false
-                }
-                //-----------
-                if (postStepOne.length() < 10 || postDescription.length() > 50) {
-                    layoutStepOne.error = "En az 10, en fazla 50 karakter olmalı"
-                    changeState = false
-                }
-            }
-            if (changeState) {
-                Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
+                val addPost = AddPost(
+                    title = postTitle.text.toString(),
+                    description = postDescription.text.toString(),
+                    steps = getStepList(),
+                    ingredients = getIngredientsList(),
+                    photos = getPostMedia()
+                )
+                viewModel.sendPost(addPost)
             }
         }
+
+        viewModel.isPostState.observe(this, Observer {
+            loadingDialog.cancel()
+            when (it) {
+                "200" -> {
+                    SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Gönderi Paylaşıldı.")
+                        .show()
+                }
+            }
+        })
 
         imgAddIngredients.setOnClickListener {
             when {
@@ -146,7 +149,6 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
                 }
             }
         }
-
         imgAddStep.setOnClickListener {
             when {
                 lnStepSecond.visibility == View.GONE -> {
@@ -169,6 +171,7 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
                 }
             }
         }
+
         imgRemoveIngredientsSecond.setOnClickListener {
             if (postIngredientsSecond.text!!.isNotEmpty()) {
                 SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
@@ -354,6 +357,90 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
         }
     }
 
+    private fun getStepList(): MutableList<String> {
+        var stepList = mutableListOf<String>()
+        for (lnStep in lnStepMap) {
+            if (lnStep.value.visibility == View.VISIBLE) {
+                stepList.add(postStepMap[lnStep.key]?.text.toString())
+            }
+        }
+        return stepList
+    }
+
+    private fun getIngredientsList(): MutableList<String> {
+        var ingredientsList = mutableListOf<String>()
+        for (lnIngredients in lnIngredientsMap) {
+            if (lnIngredients.value.visibility == View.VISIBLE) {
+                ingredientsList.add(postIngredientsMap[lnIngredients.key]?.text.toString())
+            }
+        }
+        return ingredientsList
+    }
+
+    private fun getPostMedia(): MutableList<MultipartBody.Part> {
+
+        var postList = mutableListOf<MultipartBody.Part>()
+
+        PostList.instance!!.forEachIndexed { index, post ->
+            postList.add(prepareFilePart("post[$index]", post.postUri))
+        }
+        return postList
+    }
+
+    private fun prepareFilePart(partName: String, fileUri: Uri): MultipartBody.Part {
+        val file = File(fileUri.path)
+        //val requestBody = RequestBody.create(MediaType.parse(context?.contentResolver?.getType(fileUri)!!), file)
+        val requestBody = RequestBody.create(MediaType.parse("model/form-data"), file)
+        return MultipartBody.Part.createFormData(partName, file.name, requestBody)
+    }
+
+    private fun checkLayout(): Boolean {
+
+        for (layoutStep in lyStepMap) {
+            layoutStep.value.error = ""
+        }
+        for (layoutIngredients in lyIngredientsMap) {
+            layoutIngredients.value.error = ""
+        }
+
+        var sendPostState = true
+
+        if (PostList.instance?.size!! < 2) {
+            txtMediaNotFound.visibility = View.VISIBLE
+            sendPostState = false
+        } else {
+            txtMediaNotFound.visibility = View.GONE
+
+            if (postTitle.length() < 10 || postTitle.length() > 50) {
+                layoutTitle.error = "En az 10, en fazla 50 karakter olmalı"
+                sendPostState = false
+            }
+            if (postDescription.length() < 10 || postDescription.length() > 150) {
+                layoutDescripton.error = "En az 10, en fazla 150 karakter olmalı"
+                sendPostState = false
+            }
+            //-----------
+            for (postStep in postStepMap) {
+                if (lnStepMap[postStep.key]?.visibility == View.VISIBLE) {
+                    if (postStep.value.length() < 10 || postStep.value.length() > 50) {
+                        lyStepMap[postStep.key]?.error = "En az 10, en fazla 50 karakter olmalı"
+                        sendPostState = false
+                    }
+                }
+            }
+            for (postIngredients in postIngredientsMap) {
+                if (lnIngredientsMap[postIngredients.key]?.visibility == View.VISIBLE) {
+                    if (postIngredients.value.length() < 3 || postIngredients.value.length() > 50) {
+                        lyIngredientsMap[postIngredients.key]?.error =
+                            "En az 3, en fazla 50 karakter olmalı"
+                        sendPostState = false
+                    }
+                }
+            }
+        }
+        return sendPostState
+    }
+
     private fun initMap() {
         lnIngredientsMap = mutableMapOf(
             1 to lnIngredientsOne,
@@ -393,6 +480,25 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
             4 to postStepFourth,
             5 to postStepFifth
         )
+        lyIngredientsMap = mutableMapOf(
+            1 to layoutIngredientsOne,
+            2 to layoutIngredientsSecond,
+            3 to layoutIngredientsThird,
+            4 to layoutIngredientsFourth,
+            5 to layoutIngredientsFifth,
+            6 to layoutIngredientsSixth,
+            7 to layoutIngredientsSeventh,
+            8 to layoutIngredientsEight,
+            9 to layoutIngredientsNinth,
+            10 to layoutIngredientsTenth
+        )
+        lyStepMap = mutableMapOf(
+            1 to layoutStepOne,
+            2 to layoutStepSecond,
+            3 to layoutStepThird,
+            4 to layoutStepFourth,
+            5 to layoutStepFifth
+        )
 
     }
 
@@ -401,7 +507,7 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
 
         var state: Boolean = false
 
-        if (lnIngredientsMap[line+1]?.visibility == View.GONE || lnIngredientsMap.size == line) {
+        if (lnIngredientsMap[line + 1]?.visibility == View.GONE || lnIngredientsMap.size == line) {
             postIngredientsMap[line]?.setText("")
             lnIngredientsMap[line]?.visibility = View.GONE
             txtIngredientsCount.text = (txtIngredientsCount.text.toString().toInt() - 1).toString()
@@ -428,7 +534,7 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
 
         var state: Boolean = false
 
-        if (lnStepMap[line+1]?.visibility == View.GONE || lnStepMap.size == line) {
+        if (lnStepMap[line + 1]?.visibility == View.GONE || lnStepMap.size == line) {
             postStepMap[line]?.setText("")
             lnStepMap[line]?.visibility = View.GONE
             txtStepCount.text = (txtStepCount.text.toString().toInt() - 1).toString()

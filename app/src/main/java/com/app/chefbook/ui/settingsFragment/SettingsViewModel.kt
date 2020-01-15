@@ -2,8 +2,8 @@ package com.app.chefbook.ui.settingsFragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.app.chefbook.Data.DataManager
-import com.app.chefbook.Data.Remote.ServiceCallBack
+import com.app.chefbook.data.DataManager
+import com.app.chefbook.data.remote.ServiceCallBack
 import com.app.chefbook.model.serviceModel.requestModel.ChangePassword
 import com.app.chefbook.model.serviceModel.requestModel.ChangeProfile
 import com.app.chefbook.model.serviceModel.responseModel.ProfileDetails

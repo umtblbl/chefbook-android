@@ -17,6 +17,7 @@ import com.app.chefbook.R
 import com.app.chefbook.ui.CameraActivity.CameraActivity
 import com.app.chefbook.ui.utility.BaseFragment
 import com.app.chefbook.utility.PostList
+import com.app.chefbook.utility.Utility
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -159,6 +160,11 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener,
 
         override fun getCount(): Int = fragments.size
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Utility.cameraCaptureCount = 0
     }
 
 }

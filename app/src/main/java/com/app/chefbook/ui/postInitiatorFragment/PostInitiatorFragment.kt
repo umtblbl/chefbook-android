@@ -422,7 +422,7 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
 
         PostList.instance!!.forEachIndexed { index, post ->
             if (!post.isAddPost) {
-                postList.add(prepareFilePart("post[$index]", post.postUri))
+                postList.add(prepareFilePart("photos", post.postUri))
             }
         }
         return postList

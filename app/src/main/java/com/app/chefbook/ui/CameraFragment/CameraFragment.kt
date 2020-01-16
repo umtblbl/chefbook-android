@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat
 import com.app.chefbook.model.AdapterModel.PostInitiatorMedia
 import com.app.chefbook.R
 import com.app.chefbook.utility.PostList
+import com.app.chefbook.utility.Utility
 import com.otaliastudios.cameraview.CameraListener
 import com.otaliastudios.cameraview.PictureResult
 import com.otaliastudios.cameraview.VideoResult
@@ -96,7 +97,7 @@ class CameraFragment : Fragment() {
                 super.onPictureTaken(result)
                 val data = result.data
                 val bitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
-                val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"/image.jpeg")
+                val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"/image[${Utility.cameraCaptureCount}].jpeg")
                 val rotatedBitmap = bitmap.rotate(90f)
 
                 PostList.instance?.add(
@@ -110,7 +111,7 @@ class CameraFragment : Fragment() {
                     rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
                     os.close()
                 }
-
+                Utility.cameraCaptureCount++
                 activity?.finish()
 
                 /*Thread(Runnable {

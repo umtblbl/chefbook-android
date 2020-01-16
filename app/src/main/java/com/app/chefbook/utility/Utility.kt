@@ -17,5 +17,6 @@ class Utility {
             val matrix = Matrix().apply { postRotate(degrees) }
             return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
         }
+        var cameraCaptureCount: Int = 0
     }
 }

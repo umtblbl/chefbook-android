@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.app.chefbook.di.DataManager.componentFragment
 import com.app.chefbook.data.DataManager
@@ -34,6 +35,7 @@ import kotlinx.android.synthetic.main.fragment_post_initiator.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Multipart
 import java.io.File
 
 import javax.inject.Inject
@@ -44,7 +46,8 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
     lateinit var postService: PostService
     private lateinit var viewModel: PostInitiatorViewModel
     lateinit var postInitiatorMediaAdapter: PostInitiatorMediaAdapter
-    private val addImageUri: Uri = Uri.parse("android.resource://com.example.peeple/drawable/ic_add_a_photo_white_24dp")
+    private val addImageUri: Uri =
+        Uri.parse("android.resource://com.example.peeple/drawable/ic_add_a_photo_white_24dp")
     var toolbar: Toolbar? = null
     private var toolbarPostInitiator: View? = null
     private var imgToolbarSend: ImageView? = null
@@ -56,7 +59,11 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
     private lateinit var lyStepMap: MutableMap<Int, TextInputLayout>
     private lateinit var loadingDialog: SweetAlertDialog
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         val view = inflater.inflate(R.layout.fragment_post_initiator, container, false)
         componentFragment.inject(this)
@@ -75,27 +82,11 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
         recViewPostMedia.layoutManager = GridLayoutManager(context, spanCount)
         recViewPostMedia.adapter = postInitiatorMediaAdapter
         postInitiatorMediaAdapter.notifyDataSetChanged()
-        loadingDialog = SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
+        loadingDialog =
+            SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
         initMap()
 
-        imgToolbarSend?.setOnClickListener {
-            Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
 
-            if (checkLayout()) {
-                Toast.makeText(context, "SendTrue", Toast.LENGTH_SHORT).show()
-
-                loadingDialog.show()
-
-                val addPost = AddPost(
-                    title = postTitle.text.toString(),
-                    description = postDescription.text.toString(),
-                    steps = getStepList(),
-                    ingredients = getIngredientsList(),
-                    photos = getPostMedia()
-                )
-                viewModel.sendPost(addPost)
-            }
-        }
 
         viewModel.isPostState.observe(this, Observer {
             loadingDialog.cancel()
@@ -355,16 +346,52 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
                 handleStep(5)
             }
         }
-    }
 
-    private fun getStepList(): MutableList<String> {
-        var stepList = mutableListOf<String>()
-        for (lnStep in lnStepMap) {
-            if (lnStep.value.visibility == View.VISIBLE) {
-                stepList.add(postStepMap[lnStep.key]?.text.toString())
+        imgToolbarSend?.setOnClickListener {
+            Toast.makeText(context, "Send", Toast.LENGTH_SHORT).show()
+
+            if (checkLayout()) {
+                Toast.makeText(context, "SendTrue", Toast.LENGTH_SHORT).show()
+
+                loadingDialog.show()
+
+                /*val addPost = AddPost(
+                    title = postTitle.text.toString(),
+                    description = postDescription.text.toString(),
+                    steps = getStepList(),
+                    ingredients = getIngredientsList(),
+                    photos = getPostMedia()
+                )
+                viewModel.sendPost(addPost)*/
+
+                val stepList = getStepList()
+                val steps = Array(stepList.size){"0"}
+                stepList.forEachIndexed { index, s ->
+                    steps[index] = s
+                }
+
+                val ingredientsList = getIngredientsList()
+                val ingredients = Array(ingredientsList.size){"0"}
+                ingredientsList.forEachIndexed { index, s ->
+                    ingredients[index] = s
+                }
+
+                val mediaList = getPostMedia()
+                val photos = Array<MultipartBody.Part>(mediaList.size){MultipartBody.Part.createFormData("", "")}
+
+                mediaList.forEachIndexed { index, part ->
+                    photos[index] = part
+                }
+
+                viewModel.sendPost(
+                    title = postTitle.text.toString(),
+                    description = postDescription.text.toString(),
+                    steps = steps,
+                    ingredients = ingredients,
+                    photos = photos
+                )
             }
         }
-        return stepList
     }
 
     private fun getIngredientsList(): MutableList<String> {
@@ -377,12 +404,26 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
         return ingredientsList
     }
 
+
+    private fun getStepList(): MutableList<String> {
+        var stepList = mutableListOf<String>()
+
+        for (lnStep in lnStepMap) {
+            if (lnStep.value.visibility == View.VISIBLE) {
+                stepList.add(postStepMap[lnStep.key]?.text.toString())
+            }
+        }
+        return stepList
+    }
+
     private fun getPostMedia(): MutableList<MultipartBody.Part> {
 
         var postList = mutableListOf<MultipartBody.Part>()
 
         PostList.instance!!.forEachIndexed { index, post ->
-            postList.add(prepareFilePart("post[$index]", post.postUri))
+            if (!post.isAddPost) {
+                postList.add(prepareFilePart("post[$index]", post.postUri))
+            }
         }
         return postList
     }

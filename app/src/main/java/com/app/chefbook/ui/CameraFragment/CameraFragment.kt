@@ -99,7 +99,8 @@ class CameraFragment : Fragment() {
                 val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"/image.jpeg")
                 val rotatedBitmap = bitmap.rotate(90f)
 
-                PostList.instance?.add(PostInitiatorMedia(Uri.fromFile(file),
+                PostList.instance?.add(
+                    PostInitiatorMedia(Uri.fromFile(file),
                     isImage = true,
                     isAddPost = false
                 ))

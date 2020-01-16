@@ -2,16 +2,16 @@ package com.app.chefbook.data.remote.service
 
 import android.annotation.SuppressLint
 import android.util.Log
-import coStringm.app.chefbook.Data.Remote.ApiClient.ApiInterface
 import com.app.chefbook.data.remote.serviceInterface.IUserService
 import com.app.chefbook.data.remote.ServiceCallBack
+import com.app.chefbook.data.remote.apiClient.ApiClient
+import com.app.chefbook.data.remote.apiClient.ApiInterface
 import com.app.chefbook.model.serviceModel.requestModel.ChangePassword
 import com.app.chefbook.model.serviceModel.requestModel.ChangeProfile
 import com.app.chefbook.model.serviceModel.requestModel.LoginUser
 import com.app.chefbook.model.serviceModel.requestModel.RegisterUser
 import com.app.chefbook.model.serviceModel.responseModel.Profile
 import com.app.chefbook.model.serviceModel.responseModel.ProfileDetails
-import com.app.denemeinstagramapp.Data.Retrofit.ApiClient
 import okhttp3.MultipartBody
 import retrofit2.Call
 import javax.inject.Inject

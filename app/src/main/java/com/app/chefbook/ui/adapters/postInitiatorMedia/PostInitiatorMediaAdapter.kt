@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.RelativeLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.app.chefbook.model.AdapterModel.PostInitiatorMedia
 import com.app.chefbook.R
@@ -44,10 +45,9 @@ class PostInitiatorMediaAdapter(
 
     class PostInitiatorViewHolder(var itemPost: View?) : RecyclerView.ViewHolder(itemPost!!) {
 
-        var item = itemView as FrameLayout
+        var item = itemView as RelativeLayout
 
         private var imgPost = item.imgPost
-        private var videoPost = item.videoPost
         private var deletePost = item.imgDeletePost
 
         fun setData(
@@ -67,13 +67,10 @@ class PostInitiatorMediaAdapter(
                     deletePost.visibility = View.GONE
                 }
 
-                videoPost.visibility = View.GONE
                 imgPost.setImageURI(postMedia.postUri)
                 imgPost.visibility = View.VISIBLE
             } else {
                 imgPost.visibility = View.GONE
-                videoPost.setVideoURI(postMedia.postUri)
-                videoPost.visibility = View.VISIBLE
             }
             itemPost?.setOnClickListener { onClickListener.onClick(position.toString()) }
         }

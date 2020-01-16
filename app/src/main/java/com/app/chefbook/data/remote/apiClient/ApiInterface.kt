@@ -1,9 +1,10 @@
-package coStringm.app.chefbook.Data.Remote.ApiClient
+package com.app.chefbook.data.remote.apiClient
 
 import com.app.chefbook.model.serviceModel.requestModel.*
 import com.app.chefbook.model.serviceModel.responseModel.Profile
 import com.app.chefbook.model.serviceModel.responseModel.ProfileDetails
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -35,6 +36,11 @@ interface ApiInterface {
     @PUT("User/coverupdate")
     fun uploadCoverPicture(@Part coverPicture: MultipartBody.Part): Call<String>
 
-    @POST("Post/add")
-    fun sendPost(@Body addPost: AddPost): Call<String>
+    @Multipart
+    @POST("Post/addpost")
+    fun sendPost(@Part ("title") title: String,
+                 @Part ("description") description: String,
+                 @Part ("steps") steps: Array<String>,
+                 @Part ("ingredients") ingredients: Array<String>,
+                 @Part photos: Array<MultipartBody.Part> ): Call<String>
 }

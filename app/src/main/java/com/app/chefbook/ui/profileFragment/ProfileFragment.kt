@@ -17,8 +17,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.app.chefbook.di.DataManager.componentFragment
-import com.app.chefbook.data.DataManager
+import com.app.chefbook.di.componentFragment
+import com.app.chefbook.data.remote.manager.userManager.UserManager
 import com.app.chefbook.R
 import com.app.chefbook.ui.adapters.RecyclerViewOnClickListener
 import com.theartofdev.edmodo.cropper.CropImage
@@ -33,10 +33,10 @@ import com.app.chefbook.databinding.ToolbarProfileBinding
 import com.app.chefbook.ui.adapters.profilePost.ProfilePostAdapter
 import kotlinx.android.synthetic.main.fragment_profile.*
 
-class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
+class ProfileFragment : Fragment(), RecyclerViewOnClickListener<Int> {
 
     @Inject
-    lateinit var dataManager: DataManager
+    lateinit var userManager: UserManager
     private lateinit var viewModel: ProfileViewModel
     private var imgToolbarSettings: ImageView? = null
     var toolbar: Toolbar? = null
@@ -50,7 +50,7 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         profileBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         componentFragment.inject(this)
-        viewModel = ViewModelProviders.of(this, ProfileViewModelFactory(dataManager)).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ProfileViewModelFactory(userManager)).get(ProfileViewModel::class.java)
 
         initBindingObserver()
         initToolbar()
@@ -123,6 +123,8 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
 
         }
 
+        refreshLayoutProfile.setOnRefreshListener { viewModel.getProfile() }
+
         loadingDialog = SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE).setTitleText("Yükleniyor...")
     }
 
@@ -190,8 +192,8 @@ class ProfileFragment : Fragment(), RecyclerViewOnClickListener {
         }
     }
 
-    override fun onClick(item: String) {
-        Toast.makeText(context, "Id = $item", Toast.LENGTH_LONG).show()
+    override fun onClick(id: String, value: Int, type: Int) {
+        Toast.makeText(context, "Id = $id", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {

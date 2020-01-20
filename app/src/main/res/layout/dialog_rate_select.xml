@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="60dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/starOne"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_star_24dp" />
+
+            <ImageView
+                android:id="@+id/starSecond"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_star_24dp" />
+
+            <ImageView
+                android:id="@+id/starThird"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_star_24dp" />
+
+            <ImageView
+                android:id="@+id/starFourth"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_star_24dp" />
+
+            <ImageView
+                android:id="@+id/starFifth"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_star_24dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSendRate"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/transparent_button_blue_purple"
+            android:text="Ok" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

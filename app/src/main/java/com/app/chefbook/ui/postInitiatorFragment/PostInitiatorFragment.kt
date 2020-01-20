@@ -9,38 +9,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import android.widget.RemoteViewsService
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.app.chefbook.di.DataManager.componentFragment
-import com.app.chefbook.data.DataManager
-import com.app.chefbook.model.AdapterModel.PostInitiatorMedia
+import com.app.chefbook.di.componentFragment
+import com.app.chefbook.model.adapterModel.PostInitiatorMedia
 import com.app.chefbook.R
-import com.app.chefbook.data.remote.service.PostService
-import com.app.chefbook.model.serviceModel.requestModel.AddPost
+import com.app.chefbook.data.remote.service.postService.PostService
 import com.app.chefbook.ui.adapters.postInitiatorMedia.PostInitiatorMediaAdapter
 import com.app.chefbook.ui.adapters.RecyclerViewOnClickListener
-import com.app.chefbook.ui.CameraActivity.CameraActivity
-import com.app.chefbook.utility.PostList
+import com.app.chefbook.ui.cameraActivity.CameraActivity
+import com.app.chefbook.model.appModel.PostList
 import com.app.chefbook.utility.Utility
 import com.app.chefbook.utility.getInflateLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_post_initiator.*
-import okhttp3.MediaType
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import retrofit2.http.Multipart
-import java.io.File
 
 import javax.inject.Inject
 
-class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
+class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener<Int> {
 
     @Inject
     lateinit var postService: PostService
@@ -376,7 +368,7 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
                     ingredients[index] = s
                 }
 
-                val mediaList = getPostMedia()
+                val mediaList = viewModel.getPostMedia()
                 val photos = Array<MultipartBody.Part>(mediaList.size){MultipartBody.Part.createFormData("", "")}
 
                 mediaList.forEachIndexed { index, part ->
@@ -404,7 +396,6 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
         return ingredientsList
     }
 
-
     private fun getStepList(): MutableList<String> {
         var stepList = mutableListOf<String>()
 
@@ -414,25 +405,6 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
             }
         }
         return stepList
-    }
-
-    private fun getPostMedia(): MutableList<MultipartBody.Part> {
-
-        var postList = mutableListOf<MultipartBody.Part>()
-
-        PostList.instance!!.forEachIndexed { index, post ->
-            if (!post.isAddPost) {
-                postList.add(prepareFilePart("photos", post.postUri))
-            }
-        }
-        return postList
-    }
-
-    private fun prepareFilePart(partName: String, fileUri: Uri): MultipartBody.Part {
-        val file = File(fileUri.path)
-        //val requestBody = RequestBody.create(MediaType.parse(context?.contentResolver?.getType(fileUri)!!), file)
-        val requestBody = RequestBody.create(MediaType.parse("model/form-data"), file)
-        return MultipartBody.Part.createFormData(partName, file.name, requestBody)
     }
 
     private fun checkLayout(): Boolean {
@@ -597,8 +569,8 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
         }
     }
 
-    override fun onClick(item: String) {
-        if (PostList.instance!![item.toInt()].isAddPost) {
+    override fun onClick(id: String, value: Int, type: Int) {
+        if (PostList.instance!![id.toInt()].isAddPost) {
             startActivity(Intent(context!!, CameraActivity::class.java))
         }
     }
@@ -633,6 +605,4 @@ class PostInitiatorFragment : Fragment(), RecyclerViewOnClickListener {
         super.onDestroy()
         toolbar?.removeView(toolbarPostInitiator)
     }
-
-    interface MutableEntry<K, V> : Map.Entry<K, V>
 }

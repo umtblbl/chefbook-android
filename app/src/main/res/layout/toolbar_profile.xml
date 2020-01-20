@@ -19,6 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="7dp"
             android:textColor="@color/colorWhite"
+            android:fontFamily="@font/expletus_sans"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="@{profileViewModel.profile.userName}"/>

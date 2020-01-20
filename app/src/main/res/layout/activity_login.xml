@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="VectorDrawableCompat"
-        tools:context=".ui.LoginActivity.LoginActivity">
+        tools:context=".ui.loginActivity.LoginActivity">
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/bgHeader"
@@ -115,7 +115,7 @@
                                 android:layout_height="match_parent"
                                 android:backgroundTint="@color/colorPrimaryDark"
                                 android:hint="Kullanıcı Adı / Email"
-                                android:text="string"
+                                android:text="cznburak"
                                 android:singleLine="true"
                                 android:textColor="@android:color/black"
                                 android:textSize="16sp"
@@ -146,7 +146,7 @@
                                 android:layout_height="match_parent"
                                 android:backgroundTint="@color/colorPrimaryDark"
                                 android:hint="@string/password"
-                                android:text="string"
+                                android:text="12345678"
                                 android:inputType="textPassword"
                                 android:singleLine="true"
                                 android:textColor="@android:color/black"

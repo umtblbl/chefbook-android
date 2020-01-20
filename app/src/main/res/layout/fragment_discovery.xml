@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.app.chefbook.ui.DiscoveryFragment.DiscoveryFragment">
+    tools:context="com.app.chefbook.ui.discoveryFragment.DiscoveryFragment">
 
-</RelativeLayout>
+    <data>
+
+        <variable
+            name="discoveryViewModel"
+            type="com.app.chefbook.ui.discoveryFragment.DiscoveryViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recViewDiscovery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:searchResult="@{discoveryViewModel.searchResult}"/>
+
+    </RelativeLayout>
+</layout>

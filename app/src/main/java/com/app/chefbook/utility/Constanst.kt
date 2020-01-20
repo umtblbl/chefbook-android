@@ -16,6 +16,6 @@ fun getInflateLayout(context:Context, layout:Int): View? {
 
 fun isValidEmail(target: String?): Boolean {
     return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches())
-
 }
+
 

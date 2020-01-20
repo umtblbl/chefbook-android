@@ -7,7 +7,6 @@
 
     <fragment
         android:id="@+id/discoveryFragment"
-        android:name="com.app.chefbook.ui.DiscoveryFragment.DiscoveryFragment"
-        android:label="fragment_discovery"
+        android:name="com.app.chefbook.ui.discoveryFragment.DiscoveryFragment"
         tools:layout="@layout/fragment_discovery" />
 </navigation>

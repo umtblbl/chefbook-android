@@ -8,6 +8,5 @@
     <fragment
         android:id="@+id/postInitiatorFragment"
         android:name="com.app.chefbook.ui.postInitiatorFragment.PostInitiatorFragment"
-        android:label="fragment_post_initiator"
         tools:layout="@layout/fragment_post_initiator" />
 </navigation>

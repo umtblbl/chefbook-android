@@ -46,4 +46,5 @@
     <string name="ingredient_ninth">9.Malzeme</string>
     <string name="ingredient_tenth">10.Malzeme</string>
     <string name="description">Açıklama</string>
+    <string name="ok">Tamam</string>
 </resources>

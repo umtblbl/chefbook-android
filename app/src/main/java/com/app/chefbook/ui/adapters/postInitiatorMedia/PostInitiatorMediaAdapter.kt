@@ -3,19 +3,16 @@ package com.app.chefbook.ui.adapters.postInitiatorMedia
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.RelativeLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.app.chefbook.model.AdapterModel.PostInitiatorMedia
+import com.app.chefbook.model.adapterModel.PostInitiatorMedia
 import com.app.chefbook.R
 import com.app.chefbook.ui.adapters.RecyclerViewOnClickListener
-import com.app.chefbook.utility.PostList
+import com.app.chefbook.model.appModel.PostList
 import kotlinx.android.synthetic.main.item_post_initiator_media.view.*
 
 class PostInitiatorMediaAdapter(
-    private var postListMedia: MutableList<PostInitiatorMedia>?,
-    var onClickListener: RecyclerViewOnClickListener
-) : RecyclerView.Adapter<PostInitiatorMediaAdapter.PostInitiatorViewHolder>() {
+    private var postListMedia: MutableList<PostInitiatorMedia>?,var onClickListener: RecyclerViewOnClickListener<Int>) : RecyclerView.Adapter<PostInitiatorMediaAdapter.PostInitiatorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostInitiatorViewHolder {
         val itemPost = LayoutInflater.from(parent.context).inflate(R.layout.item_post_initiator_media, parent, false)
@@ -45,7 +42,7 @@ class PostInitiatorMediaAdapter(
 
     class PostInitiatorViewHolder(var itemPost: View?) : RecyclerView.ViewHolder(itemPost!!) {
 
-        var item = itemView as RelativeLayout
+        var item = itemView as ConstraintLayout
 
         private var imgPost = item.imgPost
         private var deletePost = item.imgDeletePost
@@ -53,7 +50,7 @@ class PostInitiatorMediaAdapter(
         fun setData(
             postMedia: PostInitiatorMedia,
             position: Int,
-            onClickListener: RecyclerViewOnClickListener
+            onClickListener: RecyclerViewOnClickListener<Int>
         ) {
 
             if (postMedia.isImage) {
@@ -63,7 +60,7 @@ class PostInitiatorMediaAdapter(
 
                 }
                 else {
-                    imgPost.setPadding(80, 80, 80, 80)
+                    imgPost.setPadding(120, 120, 120, 120)
                     deletePost.visibility = View.GONE
                 }
 
@@ -72,7 +69,7 @@ class PostInitiatorMediaAdapter(
             } else {
                 imgPost.visibility = View.GONE
             }
-            itemPost?.setOnClickListener { onClickListener.onClick(position.toString()) }
+            itemPost?.setOnClickListener { onClickListener.onClick(position.toString(), 0, 0) }
         }
     }
 }

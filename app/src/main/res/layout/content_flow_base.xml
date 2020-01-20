@@ -5,13 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.utility.BaseFragment">
+    tools:context=".ui.utility.BaseFragment"
+    android:background="@drawable/gradient_background">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_flow_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/gradient_background"
+        android:elevation="30dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintTop_toTopOf="parent"/>

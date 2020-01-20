@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:elevation="10dp">
-</RelativeLayout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.app.chefbook.ui.flowFragment.FlowFragment">
+
+    <data>
+
+        <variable
+            name="flowViewModel"
+            type="com.app.chefbook.ui.flowFragment.FlowViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:refreshing="@{flowViewModel.flowPostState}"
+        app:onRefreshListener="@{() -> flowViewModel.getUserFlowPost()}">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewFlow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:flowPost="@{flowViewModel.flowPostList}" />
+
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

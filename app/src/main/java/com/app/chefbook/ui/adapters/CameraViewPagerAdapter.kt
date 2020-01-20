@@ -3,8 +3,8 @@ package com.app.chefbook.ui.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.app.chefbook.ui.CameraFragment.CameraFragment
-import com.app.chefbook.ui.GalleryFragment.GalleryFragment
+import com.app.chefbook.ui.cameraFragment.CameraFragment
+import com.app.chefbook.ui.galleryFragment.GalleryFragment
 
 class CameraViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 

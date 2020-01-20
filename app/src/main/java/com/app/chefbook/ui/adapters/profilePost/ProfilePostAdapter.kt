@@ -8,7 +8,7 @@ import com.app.chefbook.model.serviceModel.responseModel.Profile
 import com.app.chefbook.R
 import com.app.chefbook.ui.adapters.RecyclerViewOnClickListener
 
-class ProfilePostAdapter(var onClickListener: RecyclerViewOnClickListener) :RecyclerView.Adapter<ProfilePostViewHolder>() {
+class ProfilePostAdapter(var onClickListener: RecyclerViewOnClickListener<Int>) :RecyclerView.Adapter<ProfilePostViewHolder>() {
 
     private lateinit var profile: Profile
 
@@ -30,7 +30,7 @@ class ProfilePostAdapter(var onClickListener: RecyclerViewOnClickListener) :Recy
         val profilePost = profile.profilePosts[position]
         holder.bind(profilePost)
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(holder.adapterPosition.toString())
+            onClickListener.onClick(holder.adapterPosition.toString(), 0, 0)
         }
     }
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.app.chefbook.ui.CameraFragment.CameraFragment">
+    tools:context="com.app.chefbook.ui.cameraFragment.CameraFragment">
 
     <com.otaliastudios.cameraview.CameraView
         android:id="@+id/cameraView"
@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:keepScreenOn="true"
         app:cameraFlash="off"
-        android:focusable="true"/>
+        android:focusable="true" />
 
     <LinearLayout
         android:id="@+id/lnCounter"

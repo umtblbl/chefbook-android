@@ -15,8 +15,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.app.chefbook.di.DataManager.componentFragment
-import com.app.chefbook.data.DataManager
+import com.app.chefbook.di.componentFragment
+import com.app.chefbook.data.remote.manager.userManager.UserManager
 import com.app.chefbook.model.serviceModel.requestModel.ChangePassword
 import com.app.chefbook.model.serviceModel.requestModel.ChangeProfile
 import com.app.chefbook.R
@@ -30,7 +30,7 @@ import javax.inject.Inject
 class SettingsFragment : Fragment() {
 
     @Inject
-    lateinit var dataManager: DataManager
+    lateinit var userManager: UserManager
     private lateinit var viewModel: SettingsViewModel
     var userName: String = ""
     private var repUserName: String = ""
@@ -39,7 +39,7 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         settingsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
         componentFragment.inject(this)
-        viewModel = ViewModelProviders.of(this, SettingsViewModelFactory(dataManager)).get(SettingsViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, SettingsViewModelFactory(userManager)).get(SettingsViewModel::class.java)
 
         arguments?.let {
             val safeArgs = SettingsFragmentArgs.fromBundle(it)

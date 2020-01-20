@@ -1,15 +1,15 @@
 package com.app.chefbook.ui.postInitiatorFragment
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.app.chefbook.data.DataManager
 import com.app.chefbook.data.remote.ServiceCallBack
-import com.app.chefbook.data.remote.service.PostService
-import com.app.chefbook.data.remote.service.UserService
-import com.app.chefbook.model.serviceModel.requestModel.AddPost
+import com.app.chefbook.data.remote.service.postService.PostService
+import com.app.chefbook.model.appModel.PostList
+import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import javax.inject.Inject
+import java.io.File
 
 class PostInitiatorViewModel(val postService: PostService) : ViewModel() {
 
@@ -25,5 +25,24 @@ class PostInitiatorViewModel(val postService: PostService) : ViewModel() {
                 isPostState.postValue(message)
             }
         })
+    }
+
+    fun getPostMedia(): MutableList<MultipartBody.Part> {
+
+        var postList = mutableListOf<MultipartBody.Part>()
+
+        PostList.instance!!.forEachIndexed { _, post ->
+            if (!post.isAddPost) {
+                postList.add(prepareFilePart(post.postUri))
+            }
+        }
+        return postList
+    }
+
+    private fun prepareFilePart(fileUri: Uri): MultipartBody.Part {
+        val file = File(fileUri.path)
+        //val requestBody = RequestBody.create(MediaType.parse(context?.contentResolver?.getType(fileUri)!!), file)
+        val requestBody = RequestBody.create(MediaType.parse("model/form-data"), file)
+        return MultipartBody.Part.createFormData("photos", file.name, requestBody)
     }
 }

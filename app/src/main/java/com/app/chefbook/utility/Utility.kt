@@ -18,5 +18,7 @@ class Utility {
             return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
         }
         var cameraCaptureCount: Int = 0
+
+        var accessToken = ""
     }
 }

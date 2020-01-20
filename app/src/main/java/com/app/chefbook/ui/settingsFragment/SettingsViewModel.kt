@@ -2,13 +2,13 @@ package com.app.chefbook.ui.settingsFragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.app.chefbook.data.DataManager
+import com.app.chefbook.data.remote.manager.userManager.UserManager
 import com.app.chefbook.data.remote.ServiceCallBack
 import com.app.chefbook.model.serviceModel.requestModel.ChangePassword
 import com.app.chefbook.model.serviceModel.requestModel.ChangeProfile
 import com.app.chefbook.model.serviceModel.responseModel.ProfileDetails
 
-class SettingsViewModel(val dataManager: DataManager) : ViewModel() {
+class SettingsViewModel(val userManager: UserManager) : ViewModel() {
 
     var changePasswordState = MutableLiveData<String>()
     var changeProfileDetailsState = MutableLiveData<String>()
@@ -17,7 +17,7 @@ class SettingsViewModel(val dataManager: DataManager) : ViewModel() {
 
     fun changePassword(changePassword: ChangePassword) {
 
-        dataManager.changePassword(changePassword, object : ServiceCallBack<String> {
+        userManager.changePassword(changePassword, object : ServiceCallBack<String> {
             override fun onResponse(response: String) {
                 changePasswordState.postValue(response)
             }
@@ -30,7 +30,7 @@ class SettingsViewModel(val dataManager: DataManager) : ViewModel() {
 
     fun changeProfileDetails(changeProfile: ChangeProfile) {
 
-        dataManager.changeProfile(changeProfile, object : ServiceCallBack<String> {
+        userManager.changeProfile(changeProfile, object : ServiceCallBack<String> {
             override fun onResponse(response: String) {
                 changeProfileDetailsState.postValue(response)
             }
@@ -42,7 +42,7 @@ class SettingsViewModel(val dataManager: DataManager) : ViewModel() {
     }
 
     fun getProfileDetails() {
-        dataManager.getProfileDetails(object : ServiceCallBack<ProfileDetails> {
+        userManager.getProfileDetails(object : ServiceCallBack<ProfileDetails> {
             override fun onResponse(response: ProfileDetails) {
                 profileDetails.postValue(response)
             }

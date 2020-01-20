@@ -11,26 +11,23 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="3dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="4dp"
         android:elevation="5dp"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewProfilePost"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="10dp"
-            app:cardCornerRadius="@dimen/cardView_post_radius">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imgPost"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
+                    app:riv_corner_radius="20dip"
                     app:imageUrl="@{profilePost.pictureUrl}"/>
 
                 <LinearLayout
@@ -138,6 +135,5 @@
 
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </layout>

@@ -9,11 +9,12 @@
     android:layout_marginStart="3dp"
     android:layout_marginTop="3dp">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/ivImg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/app_name"
+        app:riv_corner_radius="15dip"
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
 

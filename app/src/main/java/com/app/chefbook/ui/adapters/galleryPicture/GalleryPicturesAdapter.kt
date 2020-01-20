@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.app.chefbook.model.AppModel.GalleryPicture
+import com.app.chefbook.model.appModel.GalleryPicture
 import com.app.chefbook.R
 
 import android.content.Context
@@ -50,8 +50,7 @@ class GalleryPicturesAdapter(private val list: List<GalleryPicture>) : RecyclerV
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): GalleryPictureViewHolder {
-        val vh = GalleryPictureViewHolder(
-            LayoutInflater.from(p0.context).inflate(R.layout.multi_gallery_listitem, p0, false)
+        val vh = GalleryPictureViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.multi_gallery_listitem, p0, false)
         )
 
         vh.containerView.setOnClickListener {

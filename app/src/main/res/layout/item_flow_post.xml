@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="flowPost"
+            type="com.app.chefbook.model.serviceModel.responseModel.UserFlowPost" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_background"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                imageUrl="@{flowPost.profileImage}"/>
+
+            <TextView
+                android:id="@+id/txtUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="@{flowPost.userName}"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recViewSlidingMedia"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/lnPointComment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="40dp"
+                    android:layout_marginStart="-38dp"
+                    android:paddingEnd="7dp"
+                    android:background="@drawable/transparent_radius_background"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlSymmetry">
+
+                    <ImageView
+                        android:id="@+id/imgLike"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
+                        android:src="@drawable/ic_favorite_border_white_24dp" />
+
+                    <TextView
+                        android:id="@+id/txtLikeCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@{String.valueOf(flowPost.likeCount)}"/>
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ic_comment_line_white_24dp" />
+
+                    <TextView
+                        android:id="@+id/txtCommentCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="3dp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@{String.valueOf(flowPost.commentCount)}"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lnStar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/transparent_radius_background"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4.5dp"
+                    android:paddingEnd="40dp"
+                    android:paddingStart="5dp"
+                    android:layout_marginEnd="-33dp"
+                    android:layout_alignParentEnd="true">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="2dp"
+                        android:src="@drawable/ic_star_gold_24dp" />
+
+                    <TextView
+                        android:id="@+id/txtPostRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:textColor="@color/colorGold"
+                        android:textSize="16sp"
+                        android:text="@{String.valueOf(flowPost.star)}"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp">
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="@{flowPost.title}"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="5dp"
+                    android:textSize="15sp"
+                    android:text="@{flowPost.description}"/>
+
+                <TextView
+                    android:id="@+id/txtPostDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/lightGray"
+                    android:text="@{flowPost.postDate}"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

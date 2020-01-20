@@ -10,212 +10,227 @@
             type="com.app.chefbook.ui.profileFragment.ProfileViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayoutProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_background"
-        android:orientation="vertical">
+        app:refreshing="@{profileViewModel.profileState}">
 
-        <RelativeLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imgProfileCover"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    app:imageUrl="@{profileViewModel.profile.cover}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewProfileDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="150dp"
-                    android:layout_marginEnd="15dp"
-                    android:elevation="30dp"
-                    app:cardCornerRadius="30dp"
-                    app:layout_constraintEnd_toEndOf="@+id/imgProfileCover"
-                    app:layout_constraintStart_toStartOf="@+id/imgProfileCover"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="18dp"
-                                android:orientation="vertical"
-                                android:padding="12dp">
-
-                                <TextView
-                                    android:id="@+id/txtSharingCount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:text="@{String.valueOf(profileViewModel.profile.postCount)}"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="22sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:text="@string/sharing"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginEnd="18dp"
-                                android:orientation="vertical"
-                                android:padding="12dp">
-
-                                <TextView
-                                    android:id="@+id/txtFollowersCount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:text="@{String.valueOf(profileViewModel.profile.followerCount)}"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="22sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:text="@string/followers"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:id="@+id/txtFullName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:text="@{profileViewModel.profile.fullName}"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/txtBiography"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:padding="7dp"
-                            android:text="@{profileViewModel.profile.description}"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewProfilePicture"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="75dp"
-                    app:cardCornerRadius="75dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imgProfilePicture"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        app:civ_border_color="@color/colorWhite"
-                        app:civ_border_width="4dp"
-                        app:imageUrl="@{profileViewModel.profile.profilePicture}"
-                        app:layout_constraintEnd_toEndOf="@+id/imgProfileCover"
-                        app:layout_constraintStart_toStartOf="@+id/imgProfileCover"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@android:color/transparent"
-                    app:cardCornerRadius="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/imgChangeCoverPicture"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/transparent_edit_click"
-                        android:src="@drawable/ic_edit_white_24dp" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@android:color/transparent"
-                    app:cardCornerRadius="20dp"
-                    app:layout_constraintBottom_toBottomOf="@id/cardViewProfilePicture"
-                    app:layout_constraintEnd_toEndOf="@id/cardViewProfilePicture">
-
-                    <ImageView
-                        android:id="@+id/imgChangeProfilePicture"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/transparent_edit_click"
-                        android:src="@drawable/ic_edit_white_24dp"
-                        app:layout_constraintBottom_toBottomOf="@id/cardViewProfilePicture"
-                        app:layout_constraintEnd_toEndOf="@id/cardViewProfilePicture" />
-                </androidx.cardview.widget.CardView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_background"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/constraintProfile"
-                android:layout_margin="5dp">
+                android:layout_height="match_parent">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recViewPost"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgProfileCover"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{profileViewModel.profile.cover}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewProfileDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="150dp"
+                        android:layout_marginEnd="15dp"
+                        android:elevation="30dp"
+                        app:cardCornerRadius="30dp"
+                        app:layout_constraintEnd_toEndOf="@+id/imgProfileCover"
+                        app:layout_constraintStart_toStartOf="@+id/imgProfileCover"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="18dp"
+                                    android:orientation="vertical"
+                                    android:padding="12dp">
+
+                                    <TextView
+                                        android:id="@+id/txtSharingCount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/expletus_sans"
+                                        android:text="@{String.valueOf(profileViewModel.profile.postCount)}"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="22sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/expletus_sans"
+                                        android:text="@string/sharing"
+
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginEnd="18dp"
+                                    android:orientation="vertical"
+                                    android:padding="12dp">
+
+                                    <TextView
+                                        android:id="@+id/txtFollowersCount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/expletus_sans"
+                                        android:text="@{String.valueOf(profileViewModel.profile.followerCount)}"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="22sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/expletus_sans"
+                                        android:text="@string/followers"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <TextView
+                                android:id="@+id/txtFullName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/expletus_sans"
+
+                                android:text="@{profileViewModel.profile.fullName}"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txtBiography"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:padding="7dp"
+                                android:text="@{profileViewModel.profile.description}"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewProfilePicture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="75dp"
+                        app:cardCornerRadius="75dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imgProfilePicture"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:civ_border_color="@color/colorWhite"
+                            app:civ_border_width="4dp"
+                            app:imageUrl="@{profileViewModel.profile.profilePicture}"
+                            app:layout_constraintEnd_toEndOf="@+id/imgProfileCover"
+                            app:layout_constraintStart_toStartOf="@+id/imgProfileCover"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/imgChangeCoverPicture"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/transparent_edit_click"
+                            android:src="@drawable/ic_edit_white_24dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="@id/cardViewProfilePicture"
+                        app:layout_constraintEnd_toEndOf="@id/cardViewProfilePicture">
+
+                        <ImageView
+                            android:id="@+id/imgChangeProfilePicture"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/transparent_edit_click"
+                            android:src="@drawable/ic_edit_white_24dp"
+                            app:layout_constraintBottom_toBottomOf="@id/cardViewProfilePicture"
+                            app:layout_constraintEnd_toEndOf="@id/cardViewProfilePicture" />
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:profile="@{profileViewModel.profile}"
-                    tools:listitem="@layout/item_profile_post" />
+                    android:layout_below="@id/constraintProfile"
+                    android:layout_margin="5dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recViewPost"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:profile="@{profileViewModel.profile}"
+                        tools:listitem="@layout/item_profile_post" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
 
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

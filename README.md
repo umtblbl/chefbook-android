@@ -1,4 +1,6 @@
-# -Kotlin  -MVVM -LiveData -DataBinding -Retrofit -NavigationArchitectureComponent -Dagger2 -OkHttp -Gson -Glide -RxJava 
+# - Kotlin, Dagger2, Retrofit, MVVM, 
+# - Navigation Architecture Component, DataBinding, LiveData
+# - RxJava, OkHttp, Gson, Glide
 
 
 ![](https://media.giphy.com/media/VeYQui2HKYqZrIclT7/giphy.gif)
